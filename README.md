@@ -28,7 +28,7 @@
 ### Update currently reading book(s) progress (pages, percent)
 
 
-### Return a list or random choice of to be read book(s) according to user-selected criteria (short, medium, long; fiction/non-fictionl; genre/subject)
+### Return a list or random choice of to be read book(s) according to user-selected criteria (short, medium, long; fiction/non-fiction; genre/subject)
 
 *OPTIONAL*
 ### Calculate time left to read book(s)
