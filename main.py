@@ -1,9 +1,9 @@
 import random
 
 book_list = [
-    {'title': 'title', 'author': 'author', 'pages': 200, 'currently_reading': False, 'pages_read': 0},
-    {'title': 'title2', 'author': 'author2', 'pages': 300, 'currently_reading': False, 'pages_read': 0}, 
-    {'title': 'title3', 'author': 'author3', 'pages': 500, 'currently_reading': False, 'pages_read': 0},
+    {'title': 'Doppelganger', 'author': 'Naomi Klein', 'pages': 416, 'currently_reading': True, 'pages_read': 0},
+    {'title': 'I, Claudius', 'author': 'Robert Graves', 'pages': 468, 'currently_reading': True, 'pages_read': 0}, 
+    {'title': 'Python for Dummies', 'author': 'Stef Maruch', 'pages': 432, 'currently_reading': False, 'pages_read': 0},
     ]
 
 def add_book(new_title, new_author, new_pages, currently_reading = False, pages_read = 0):
@@ -22,13 +22,21 @@ def get_book_list():
         print(f"{i + 1}: '{book['title']}' by {book['author']}")
 
 def delete_book(index):
-    print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} has been deleted.")
-    del book_list[index - 1]
-
+    try:
+        print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} has been deleted.")
+        del book_list[index - 1]
+    except IndexError:
+        print("Selection out of range")
 
 def set_current_book(index):
-    book_list[index -1]["currently_reading"] = True
-    print(f"Enjoy reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}!")
+    try:
+        if book_list[index -1]["currently_reading"]:
+            print(f"You're already reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}")
+        else:
+            book_list[index -1]["currently_reading"] == True
+            print(f"Enjoy reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}!")
+    except IndexError:
+        print("Selection out of range")
 
 def get_random_book():
     random_book = random.choice(book_list)
@@ -73,5 +81,5 @@ def set_book_percent(index, new_percent):
 
 
 get_book_list()
-set_book_percent(2, 89)
+set_current_book(5)
 print(book_list)
