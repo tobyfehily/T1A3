@@ -1,31 +1,30 @@
-# import gc
+book_list = [{'title': 'title', 'author': 'author'}, {'title': 'title2', 'author': 'author2'}]
 
-book_list = []
+def add_book(title, author):
+    new_book = dict(title = title, author = author)
+    book_list.append(new_book)
 
-class Book:
-    def __init__(self, title, author):
-        self.title = title
-        self.author = author
+def remove_book(index):
+    del book_list[index - 1]
 
-    def __eq__(self, other):
-        if isinstance(other, Book):
-            return self.title == other.title and self.author == other.author
-        return False
+def list_books():
+    for i, book in enumerate(book_list):
+        print(f"{i + 1}: '{book['title']}' by {book['author']}")
 
-# def add_book(title, author):
-#     new_book = dict(title = title, author = author)
-#     book_list.append(new_book)
 
-book1 = Book("title", "author")
-book_list.append(book1)
 
-title = input("Enter book title: ").lower()
-author = input("Enter author: ").lower()
-new_book = Book(title, author)
-if new_book in book_list:
-    del new_book
-    print("We got it!")
+new_title = input("Enter book title: ").lower()
+new_author = input("Enter author: ").lower()
+for book in book_list:
+    if book['title'] == new_title and book['author'] == new_author:
+        print(f"You have already added '{new_title}' by {new_author}.")
 
-# for ob in gc.get_objects():
-#     if isinstance(ob, Book):
-#         print(ob.title, ob.author)
+add_book(new_title, new_author)
+
+print(book_list)
+
+list_books()
+
+remove_book(3)
+
+list_books()
