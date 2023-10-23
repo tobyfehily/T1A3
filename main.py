@@ -1,4 +1,4 @@
-import functions, re
+import functions
 
 while True:
     new_title = input("Enter book title: ").lower()
@@ -13,7 +13,6 @@ while True:
                 break
             except ValueError:
                 print("Please enter a number.")      
-    functions.get_tags(functions.book_list)
     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
     if new_tags != "":
         unique_new_tags = set([x.strip() for x in new_tags.split(',')])
