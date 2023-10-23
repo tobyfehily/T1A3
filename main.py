@@ -1,13 +1,13 @@
 import random
 
 book_list = [
-    {'title': 'title', 'author': 'author'},
-    {'title': 'title2', 'author': 'author2'}, 
-    {'title': 'title3', 'author': 'author3'}
+    {'title': 'title', 'author': 'author', 'pages': 200},
+    {'title': 'title2', 'author': 'author2', 'pages': 300}, 
+    {'title': 'title3', 'author': 'author3', 'pages': 500}
     ]
 
-def add_book(new_title, new_author):
-    new_book = dict(title = new_title, author = new_author)
+def add_book(new_title, new_author, new_pages):
+    new_book = dict(title = new_title, author = new_author, pages = new_pages)
     book_list.append(new_book)
     print(f"{new_title} by {new_author} has been added.")
 
@@ -38,7 +38,8 @@ while True:
         print(f"You have already added '{new_title}' by {new_author}.")
         continue
     else:
-        add_book(new_title, new_author)
+        new_pages = int(input("Enter book pages: "))
+        add_book(new_title, new_author, new_pages)
 
     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
@@ -51,9 +52,4 @@ while True:
 
 
 get_book_list()
-
-# remove_book(2)
-
-# list_books()
-
-get_random_book()
+print(book_list)
