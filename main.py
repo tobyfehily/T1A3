@@ -15,8 +15,9 @@ while True:
                 print("Please enter a number.")      
     functions.get_tags(functions.book_list)
     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
-    unique_new_tags = set([x.strip() for x in new_tags.split(',')])
-    functions.add_book(new_title, new_author, new_pages, unique_new_tags)
+    if new_tags != "":
+        unique_new_tags = set([x.strip() for x in new_tags.split(',')])
+        functions.add_book(new_title, new_author, new_pages, unique_new_tags)
     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
         continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()

@@ -21,8 +21,9 @@ def get_tags(tags_list):
     unique_tags = []
     for i in tags_list:
         unique_tags.extend(i['tags'])
+    print("Current tags:")
     for x in set(unique_tags):
-        print(x)
+        print(f"- {x}")
 
 def get_book_list():
     for i, book in enumerate(book_list):
