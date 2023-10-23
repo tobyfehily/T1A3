@@ -17,6 +17,13 @@ def check_book_dupes(new_title, new_author):
             return True
     return False
 
+def get_tags(tags_list):
+    unique_tags = []
+    for i in tags_list:
+        unique_tags.extend(i['tags'])
+    for x in set(unique_tags):
+        print(x)
+
 def get_book_list():
     for i, book in enumerate(book_list):
         print(f"{i + 1}: '{book['title']}' by {book['author']}")
