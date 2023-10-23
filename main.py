@@ -13,7 +13,8 @@ while True:
                 break
             except ValueError:
                 print("Please enter a number.")      
-        functions.add_book(new_title, new_author, new_pages)
+    new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
+    functions.add_book(new_title, new_author, new_pages, new_tags.split(","))
     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
         continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
@@ -23,5 +24,6 @@ while True:
         else:
             continue
 
-functions.get_book_list()
-functions.get_random_book()
+# functions.get_book_list()
+# functions.get_random_book()
+# print(functions.book_list)
