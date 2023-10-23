@@ -21,6 +21,14 @@ def get_book_list():
     for i, book in enumerate(book_list):
         print(f"{i + 1}: '{book['title']}' by {book['author']}")
 
+def get_random_book():
+    random_book_list = []
+    for book in book_list:
+        if not book['currently_reading']:
+            random_book_list.append(book)
+    random_book = random.choice(random_book_list)
+    print(f"Why not try '{random_book['title']}' by {random_book['author']}?")
+
 def delete_book(index):
     try:
         print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} has been deleted.")
@@ -37,10 +45,6 @@ def set_current_book(index):
             print(f"Enjoy reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}!")
     except IndexError:
         print("Selection out of range")
-
-def get_random_book():
-    random_book = random.choice(book_list)
-    print(f"Why not try {random_book['title']} by {random_book['author']}?")
 
 def set_book_pages(index, new_pages):
     if new_pages > book_list[index - 1]["pages"]:
@@ -78,8 +82,6 @@ def set_book_percent(index, new_percent):
 #             continue
 
 
-
-
 get_book_list()
-set_current_book(5)
+get_random_book()
 print(book_list)
