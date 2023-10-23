@@ -47,39 +47,50 @@ def set_current_book(index):
         print("Selection out of range")
 
 def set_book_pages(index, new_pages):
-    if new_pages > book_list[index - 1]["pages"]:
-        print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long.")
-    elif new_pages == book_list[index - 1]["pages"]:
-        print("You're all finished!")
-        delete_book(index)
-    else:
-        book_list[index - 1]['pages_read'] = new_pages
-        print(f"Only {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!")
+    try:
+        if new_pages > book_list[index - 1]["pages"]:
+            print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long.")
+        elif new_pages == book_list[index - 1]["pages"]:
+            print("You're all finished!")
+            delete_book(index)
+        else:
+            book_list[index - 1]['pages_read'] = new_pages
+            print(f"Only {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!")
+    except ValueError:
+        print("Please enter a number.")
 
 def set_book_percent(index, new_percent):
-    while new_percent < 0 or new_percent > 100:
-        new_percent = input("Please enter a valid percentage between 0 and 100.")
+    try:
+        while new_percent < 0 or new_percent > 100:
+            new_percent = input("Please enter a valid percentage between 0 and 100.")
+        else:
+            book_list[index - 1]["pages_read"] = round((float(new_percent) * float(book_list[index - 1]["pages"])) / 100) 
+    except ValueError:
+        print("Please enter a number.")
+
+while True:
+    new_title = input("Enter book title: ").lower()
+    new_author = input("Enter author: ").lower()
+    if check_book_dupes(new_title, new_author):
+        print(f"You have already added '{new_title}' by {new_author}.")
+        continue
     else:
-        book_list[index - 1]["pages_read"] = round((float(new_percent) * float(book_list[index - 1]["pages"])) / 100) 
+        while True:
+            try:
+                new_pages = int(input("Enter book pages: "))
+                break
+            except ValueError:
+                print("Please enter a number.")      
+        add_book(new_title, new_author, new_pages)
 
-# while True:
-#     new_title = input("Enter book title: ").lower()
-#     new_author = input("Enter author: ").lower()
-#     if check_book_dupes(new_title, new_author):
-#         print(f"You have already added '{new_title}' by {new_author}.")
-#         continue
-#     else:
-#         new_pages = int(input("Enter book pages: "))
-#         add_book(new_title, new_author, new_pages)
-
-#     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
-#     while continue_prompt not in ["y", "n"]:
-#         continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
-#     else:
-#         if continue_prompt == 'n':
-#             break
-#         else:
-#             continue
+    continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
+    while continue_prompt not in ["y", "n"]:
+        continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
+    else:
+        if continue_prompt == 'n':
+            break
+        else:
+            continue
 
 
 get_book_list()
