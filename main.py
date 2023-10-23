@@ -1,13 +1,13 @@
 import random
 
 book_list = [
-    {'title': 'title', 'author': 'author', 'pages': 200},
-    {'title': 'title2', 'author': 'author2', 'pages': 300}, 
-    {'title': 'title3', 'author': 'author3', 'pages': 500}
+    {'title': 'title', 'author': 'author', 'pages': 200, 'currently_reading': False},
+    {'title': 'title2', 'author': 'author2', 'pages': 300, 'currently_reading': False}, 
+    {'title': 'title3', 'author': 'author3', 'pages': 500, 'currently_reading': False}
     ]
 
-def add_book(new_title, new_author, new_pages):
-    new_book = dict(title = new_title, author = new_author, pages = new_pages)
+def add_book(new_title, new_author, new_pages, currently_reading = False):
+    new_book = dict(title = new_title, author = new_author, pages = new_pages, currently_reading = currently_reading)
     book_list.append(new_book)
     print(f"{new_title} by {new_author} has been added.")
 
@@ -24,6 +24,10 @@ def get_book_list():
 def remove_book(index):
     del book_list[index - 1]
 
+def set_current_book(index):
+    book_list[index -1]["currently_reading"] = True
+    print(f"Enjoy reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}!")
+
 def get_random_book():
     random_book = random.choice(book_list)
     print(f"Why not try {random_book['title']} by {random_book['author']}?")
@@ -31,25 +35,26 @@ def get_random_book():
 
 
 
-while True:
-    new_title = input("Enter book title: ").lower()
-    new_author = input("Enter author: ").lower()
-    if check_book_dupes(new_title, new_author):
-        print(f"You have already added '{new_title}' by {new_author}.")
-        continue
-    else:
-        new_pages = int(input("Enter book pages: "))
-        add_book(new_title, new_author, new_pages)
+# while True:
+#     new_title = input("Enter book title: ").lower()
+#     new_author = input("Enter author: ").lower()
+#     if check_book_dupes(new_title, new_author):
+#         print(f"You have already added '{new_title}' by {new_author}.")
+#         continue
+#     else:
+#         new_pages = int(input("Enter book pages: "))
+#         add_book(new_title, new_author, new_pages)
 
-    continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
-    while continue_prompt not in ["y", "n"]:
-        continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
-    else:
-        if continue_prompt == 'n':
-            break
-        else:
-            continue
+#     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
+#     while continue_prompt not in ["y", "n"]:
+#         continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
+#     else:
+#         if continue_prompt == 'n':
+#             break
+#         else:
+#             continue
 
 
 get_book_list()
+set_current_book(2)
 print(book_list)
