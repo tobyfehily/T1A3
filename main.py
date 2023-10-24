@@ -9,11 +9,6 @@ book_list = [
     ]
 
 while True:
-    # try:
-    #     with open('book_list.json') as f:
-    #         book_list= json.load(f)
-    # except json.decoder.JSONDecodeError:
-    #     print("No books loaded")
     menu_choice = input(("""\nWelcome! Select an option from below:\n
     1. Add book
     2. Remove book
@@ -53,7 +48,7 @@ while True:
                     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
                     unique_new_tags = set([x.strip() for x in new_tags.split(',')])
                     if new_tags == '':
-                        unique_new_tags = '[]'
+                        unique_new_tags = new_tags
                     functions.add_book(book_list, new_title, new_author, new_pages, unique_new_tags)
                     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
                     while continue_prompt not in ["y", "n"]:
@@ -141,8 +136,6 @@ while True:
                         for key, value in books.items():
                             f.write(f'{key}: {value}\n')
                         f.write("\n")
-                # with open('book_list.json', 'w') as f:
-                #     json.dump(book_list, f)
                 sys.exit("Thanks for visiting! Happy reading.")
             case _:
                 print("Invalid input.")
