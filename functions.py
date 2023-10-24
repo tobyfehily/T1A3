@@ -42,7 +42,6 @@ def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], cur
     global book_list
     book_list = old_book_list.append(new_book)
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
-    return book_list
 
 def continue_adding_book():
     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
@@ -54,17 +53,12 @@ def continue_adding_book():
         else:
             return True
 
-def get_tags(book_list):
-    unique_tags = []
-    for i in book_list:
-        unique_tags.extend(i['tags'])
-    print("Current tags:")
-    for i in set(unique_tags):
-        print(emoji.emojize(f":label:  {i}"))
+def percentage(portion, whole):
+    return round((float(portion) / float(whole)) * 100)
 
 def get_book_list(list):
     for i, book in enumerate(list):
-        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages / {round((float(book['pages_read']) / float(book['pages'])) * 100)} percent read{' | :thumbs_up: now reading' if book['currently_reading'] else ''}"))
+        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages / {percentage((book['pages_read']), (book['pages']))} percent read{' | :thumbs_up: now reading' if book['currently_reading'] else ''}"))
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
 
@@ -82,6 +76,15 @@ def get_sorted_book_list(book_list, sorting_choice):
         case "to be read":
             get_book_list(to_be_read_book_list)
     quit_prompt = input("Press any key to exit")
+
+def get_tags(book_list):
+    unique_tags = []
+    for i in book_list:
+        unique_tags.extend(i['tags'])
+    print("Current tags:")
+    for i in set(unique_tags):
+        print(emoji.emojize(f":label:  {i}"))
+
 
 def get_tag_book_list(book_list, tag):
     tag_book_list = []

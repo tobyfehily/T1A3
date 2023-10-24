@@ -33,10 +33,10 @@ tags: ['non-fiction', 'python']
 currently_reading: False
 pages_read: 0
 
-title: 321
-author: 231
-pages: 2141
-tags: {'test2', 'test', 'non-fiction', 'yest'}
+title: 432
+author: 432
+pages: 432
+tags: 
 currently_reading: False
 pages_read: 0
 
