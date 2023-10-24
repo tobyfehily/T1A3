@@ -3,8 +3,11 @@ import sys
 import csv
 import json
 
-with open('book_list.json') as f:
-    book_list = json.load(f)
+try:
+    with open('book_list.json') as f:
+        book_list = json.load(f)
+except json.JSONDecodeError:
+    book_list = []
 
 while True:
     menu_choice = input(("""\nWelcome! Select an option from below:\n
