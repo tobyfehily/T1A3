@@ -66,7 +66,7 @@ def select_book(book_list, prompt):
             try:
                 book_selection = int(book_selection)
                 if int(book_selection) <= 0:
-                    print("Must be a positive integer.")
+                    print("Must be more than 0.")
                 elif int(book_selection) > len(book_list):
                     print("Out of range.")
                 else:
@@ -87,7 +87,7 @@ def get_tags(book_list):
 def select_tags(book_list):
     tag_book_list = []
     while True:
-        tag = input("\nChoose a tag, or press Enter to cancel: ") 
+        tag = input("\nType a tag, or press Enter to cancel: ").lower() 
         if tag == "":
             return tag
         else:
