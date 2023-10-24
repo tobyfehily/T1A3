@@ -3,14 +3,14 @@ author: naomi klein
 pages: 416
 tags: ['non-fiction']
 currently_reading: True
-pages_read: 0
+pages_read: 12
 
 title: i, claudius
 author: robert graves
 pages: 468
 tags: ['non-fiction', 'ancient rome']
 currently_reading: True
-pages_read: 0
+pages_read: 56
 
 title: python for dummies
 author: stef maruch
@@ -30,6 +30,20 @@ title: long book
 author: test author
 pages: 600
 tags: ['non-fiction', 'python']
+currently_reading: False
+pages_read: 0
+
+title: tre
+author: tre
+pages: 534
+tags: 
+currently_reading: True
+pages_read: 0
+
+title: 4325
+author: 543
+pages: 543
+tags: {'test'}
 currently_reading: False
 pages_read: 0
 

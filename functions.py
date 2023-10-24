@@ -23,7 +23,7 @@ def get_tags(tags_list):
 
 def get_book_list(list):
     for i, book in enumerate(list):
-        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']}"))
+        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages read"))
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
 
@@ -118,4 +118,3 @@ def set_book_percent(book_list, index, new_percent):
                 quit_prompt = input("Press any key to exit")
     except (ValueError):
         print("Please enter a number.")
-    
