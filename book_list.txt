@@ -33,10 +33,3 @@ tags: ['non-fiction', 'python']
 currently_reading: False
 pages_read: 0
 
-title: 453
-author: 543
-pages: 543
-tags: {'', 'twre', 'wret', 'rwe', 'trew', 'trwe', 'rewt', 'wtrew', 'trestre', 'rwet', 'ret', 't'}
-currently_reading: False
-pages_read: 0
-

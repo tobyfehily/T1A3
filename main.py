@@ -15,10 +15,8 @@ while True:
     3. Mark book as currently reading
     4. Update book progress
     5. List all books
-    6. List currently reading books
-    7. List to be read books
-    8. List books by tag                     
-    9. Pick a random to be read book\n
+    6. List books by tag                     
+    7. Pick a random to be read book\n
     0. Save books and quit\n\n"""))
     try:
         match int(menu_choice):
@@ -92,12 +90,6 @@ while True:
                 functions.get_book_list(book_list)
                 quit_prompt = input("Press any key to exit")            
             case 6:
-                functions.get_sorted_book_list(book_list, "currently reading")
-                quit_prompt = input("Press any key to exit") 
-            case 7:
-                functions.get_sorted_book_list(book_list, "to be read")
-                quit_prompt = input("Press any key to exit") 
-            case 8:
                 while True:
                     functions.get_tags(book_list)
                     tag_selection = functions.select_tags(book_list)
@@ -108,7 +100,7 @@ while True:
                                 continue
                         else:
                             break
-            case 9:
+            case 7:
                 while True:
                     functions.get_random_book(book_list)
                     if functions.continue_prompt("get another random book"):

@@ -75,20 +75,6 @@ def delete_book(book_list, index):
     print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
     del book_list[index - 1]
 
-def get_sorted_book_list(book_list, sorting_choice):
-    currently_reading_book_list = []
-    to_be_read_book_list = []
-    for book in book_list:
-        if book['currently_reading']:
-            currently_reading_book_list.append(book)
-        else:
-            to_be_read_book_list.append(book)
-    match sorting_choice:
-        case "currently reading":
-            get_book_list(currently_reading_book_list)
-        case "to be read":
-            get_book_list(to_be_read_book_list)
-
 def get_tags(book_list):
     tag_list = list(set(x for tags in book_list for x in tags['tags']))
     print("Current tags:\n")
