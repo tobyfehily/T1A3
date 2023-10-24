@@ -11,7 +11,7 @@ book_list = [
 def add_book(new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
     book_list.append(new_book)
-    print(f"{new_title} by {new_author} has been added.")
+    print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
 
 def check_book_dupes(new_title, new_author):
     for book in book_list:
@@ -19,13 +19,13 @@ def check_book_dupes(new_title, new_author):
             return True
     return False
 
-def get_tags(tags_list):
-    unique_tags = []
-    for i in tags_list:
-        unique_tags.extend(i['tags'])
-    print("Current tags:")
-    for x in set(unique_tags):
-        print(f":tags: {x}")
+# def get_tags(tags_list):
+#     unique_tags = []
+#     for i in tags_list:
+#         unique_tags.extend(i['tags'])
+#     print("Current tags:")
+#     for x in set(unique_tags):
+#         print(f":tags: {x}")
 
 def get_book_list(list):
     for i, book in enumerate(list):
@@ -51,11 +51,11 @@ def get_random_book():
         if not book['currently_reading']:
             to_be_read_book_list.append(book)
     random_book = random.choice(to_be_read_book_list)
-    print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand: {random_book['author']}?"))
+    print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
 
 def delete_book(index):
     try:
-        print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} has been deleted.")
+        print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
         del book_list[index - 1]
     except IndexError:
         print("Selection out of range")
@@ -63,7 +63,7 @@ def delete_book(index):
 def set_current_book(index):
     try:
         if book_list[index -1]["currently_reading"]:
-            print(f"You're already reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}")
+            print(emoji.emojize(f"You're already reading :open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']}"))
         else:
             book_list[index -1]["currently_reading"] == True
             print(emoji.emojize(f"Enjoy reading :open_book: {book_list[index - 1]['title']} by :writing_hand: {book_list[index - 1]['author']}!"))
@@ -73,13 +73,13 @@ def set_current_book(index):
 def set_book_pages(index, new_pages):
     try:
         if new_pages > book_list[index - 1]["pages"]:
-            print(f"{book_list[index - 1]['title']} by {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long.")
+            print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
         elif new_pages == book_list[index - 1]["pages"]:
             print("You're all finished!")
             delete_book(index)
         else:
             book_list[index - 1]['pages_read'] = new_pages
-            print(f"Only {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!")
+            print(emoji.emojize(f"Only :page_facing_up: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
     except ValueError:
         print("Please enter a number.")
 
@@ -93,7 +93,7 @@ def set_book_percent(index, new_percent):
                 print("You're all finished!")
                 delete_book(index)
             else:
-                print(f"Only {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!")
+                print(emoji.emojize(f"Only :page_facing_up: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
     except (ValueError):
         print("Please enter a number.")
     
