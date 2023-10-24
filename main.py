@@ -15,10 +15,20 @@ while True:
         match int(menu_choice):
             case 1:
                 while True:
-                    new_title = input("Enter book title: ").lower()
-                    new_author = input("Enter author: ").lower()
+                    while True:
+                        new_title = input("Enter book title: ").lower()
+                        if new_title != "":
+                            break
+                        else:
+                            print("You need to enter a book title.")
+                    while True:
+                        new_author = input("Enter author: ").lower()
+                        if new_author != "":
+                            break
+                        else:
+                            print("You need to enter an author.")
                     if functions.check_book_dupes(new_title, new_author):
-                        print(f"You have already added '{new_title}' by {new_author}.")
+                        print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue
                     else:
                         while True:
