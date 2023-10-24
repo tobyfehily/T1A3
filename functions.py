@@ -212,3 +212,8 @@ def get_random_book(book_list):
     random_book = random.choice(book_list)
     print(emoji.emojize(
         f"Why not read :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
+
+def check_empty_book_list(book_list):
+    if book_list == []:
+        cancel_prompt = input("No books found. Press Enter to return to menu: ")
+        return True

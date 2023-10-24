@@ -43,11 +43,10 @@ while True:
                             break
             case 2:
                 while True:
-                    functions.get_book_list(book_list)
-                    if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                    if functions.check_empty_book_list(book_list):
                         break
                     else:
+                        functions.get_book_list(book_list)
                         book_selection = functions.select_book(book_list, "delete")
                         if book_selection == '':
                             break
@@ -59,13 +58,12 @@ while True:
                                 break
             case 3:
                 while True:
-                    functions.get_book_list(book_list)
-                    if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                    if functions.check_empty_book_list(book_list):
                         break
                     else:
+                        functions.get_book_list(book_list)
                         book_selection = functions.select_book(
-                            book_list, "mark as reading")
+                        book_list, "mark as reading")
                         if book_selection == '':
                             break
                         else:
@@ -77,11 +75,10 @@ while True:
                                 break
             case 4:
                 while True:
-                    functions.get_book_list(book_list)
-                    if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                    if functions.check_empty_book_list(book_list):
                         break
                     else:
+                        functions.get_book_list(book_list)
                         book_selection = functions.select_book(book_list, "update")
                         if book_selection == '':
                             break
@@ -92,19 +89,18 @@ while True:
                             else:
                                 break
             case 5:
-                functions.get_book_list(book_list)
-                if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
-                        break
-                else:
-                    quit_prompt = input("Press any key to exit")
+                while True:
+                    if functions.check_empty_book_list(book_list):
+                            break
+                    else:
+                        functions.get_book_list(book_list)
+                        quit_prompt = input("Press any key to exit")
             case 6:
                 while True:
-                    functions.get_tags(book_list)
-                    if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                    if functions.check_empty_book_list(book_list):
                         break
                     else:
+                        functions.get_tags(book_list)
                         tag_selection = functions.select_tags(book_list)
                         if tag_selection == '':
                             break
@@ -115,8 +111,7 @@ while True:
                                 break
             case 7:
                 while True:
-                    if book_list == []:
-                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                    if functions.check_empty_book_list(book_list):
                         break
                     else:
                         functions.get_random_book(book_list)                    
