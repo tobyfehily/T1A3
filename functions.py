@@ -23,7 +23,7 @@ def get_tags(book_list):
 
 def get_book_list(list):
     for i, book in enumerate(list):
-        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages read"))
+        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages read{' | :thumbs_up: now reading' if book['currently_reading'] else ''}"))
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
 

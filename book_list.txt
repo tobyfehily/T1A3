@@ -16,7 +16,7 @@ title: python for dummies
 author: stef maruch
 pages: 432
 tags: ['non-fiction', 'python']
-currently_reading: False
+currently_reading: True
 pages_read: 0
 
 title: short book
@@ -30,13 +30,6 @@ title: long book
 author: test author
 pages: 600
 tags: ['non-fiction', 'python']
-currently_reading: False
-pages_read: 0
-
-title: 243
-author: 324
-pages: 432
-tags: {'432'}
 currently_reading: False
 pages_read: 0
 
