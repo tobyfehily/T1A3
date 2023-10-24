@@ -1,19 +1,21 @@
 import random, emoji
 
-book_list = [
-    {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
-    {'title': 'i, claudius', 'author': 'robert graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
-    {'title': 'python for dummies', 'author': 'stef maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-    {'title': 'short book', 'author': 'test author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-    {'title': 'long book', 'author': 'test author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-    ]
+# book_list = [
+#     {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
+#     {'title': 'i, claudius', 'author': 'robert graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
+#     {'title': 'python for dummies', 'author': 'stef maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+#     {'title': 'short book', 'author': 'test author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+#     {'title': 'long book', 'author': 'test author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+#     ]
 
-def add_book(new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
+def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
-    book_list.append(new_book)
+    global book_list
+    book_list = old_book_list.append(new_book)
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
+    return book_list
 
-def check_book_dupes(new_title, new_author):
+def check_book_dupes(new_title, new_author, book_list):
     for book in book_list:
         if book['title'] == new_title and book['author'] == new_author:
             return True
@@ -33,7 +35,7 @@ def get_book_list(list):
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
 
-def get_sorted_book_list(sorting_choice):
+def get_sorted_book_list(book_list, sorting_choice):
     currently_reading_book_list = []
     to_be_read_book_list = []
     for book in book_list:
@@ -64,7 +66,7 @@ def get_tag_book_list(tag):
             get_book_list(tag_book_list)
             break
 
-def get_random_book():
+def get_random_book(book_list):
     to_be_read_book_list = []
     for book in book_list:
         if not book['currently_reading']:
