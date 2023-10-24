@@ -22,6 +22,9 @@ def add_pages():
     while True:
         try:
             new_pages = int(input("Enter book pages: "))
+            if new_pages <= 0:
+                print("Number must be more than zero.")
+                continue
             return new_pages
         except ValueError:
             print("Please enter a number.")
