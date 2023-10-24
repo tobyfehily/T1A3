@@ -24,8 +24,8 @@ while True:
         match int(menu_choice):
             case 1:
                 while True:
-                    new_title = functions.add_book_title()
-                    new_author = functions.add_book_author()
+                    new_title = functions.add_book_info("book title")
+                    new_author = functions.add_book_info("author")
                     if functions.check_book_dupes(book_list, new_title, new_author):
                         print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue        

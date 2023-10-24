@@ -1,20 +1,12 @@
 import random, emoji
 
-def add_book_title():
+def add_book_info(prompt):
     while True:
-        new_title = input("Enter book title: ").lower()
-        if new_title != "":
-            return new_title
+        info = input(f"Enter your {prompt}: ").lower()
+        if info != "":
+            return info
         else:
-            print("You need to enter a book title.")
-
-def add_book_author():
-    while True:
-        new_author = input("Enter author: ").lower()
-        if new_author != "":
-            return new_author
-        else:
-            print("You need to enter an author.")
+            print(f"You need to enter your {prompt}.")
 
 def check_book_dupes(book_list, new_title, new_author):
     for book in book_list:

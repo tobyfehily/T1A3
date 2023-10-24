@@ -34,8 +34,8 @@ currently_reading: False
 pages_read: 0
 
 title: 432
-author: 432
-pages: 432
+author: tyhtr
+pages: 546
 tags: 
 currently_reading: False
 pages_read: 0
