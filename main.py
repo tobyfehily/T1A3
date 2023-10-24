@@ -60,32 +60,15 @@ while True:
             case 4:
                 while True:
                     functions.get_book_list(book_list)
-                    try:
-                        book_choice = int(input("Enter the number of the book to update, or enter 0 to quit: ")) 
-                        if book_choice == 0:
-                            break
-                        elif book_choice < 0:
-                            print("Must be a positive integer.")
+                    book_selection = functions.select_book(book_list, "update")
+                    if book_selection == '':
+                        break
+                    else:
+                        functions.set_book_progress(book_list, book_selection)
+                        if functions.continue_prompt("update another book"):
+                                continue
                         else:
-                            while True:
-                                try:
-                                    update_value = int(input("Enter the current page or percent: "))
-                                    while True:
-                                        pages_or_percent = input("Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
-                                        match pages_or_percent:
-                                            case "pages":
-                                                    functions.set_book_pages(book_list, book_choice, update_value)
-                                                    break
-                                            case "percent":
-                                                    functions.set_book_percent(book_list, book_choice, update_value)
-                                                    break
-                                            case _:
-                                                print("Invalid input")
-                                    break
-                                except ValueError:
-                                    print("You did not enter a number")
-                    except ValueError:
-                        print("You did not enter a number.")
+                            break
             case 5:
                 functions.get_book_list(book_list)
                 quit_prompt = input("Press any key to exit")            
