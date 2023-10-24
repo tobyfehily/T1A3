@@ -18,7 +18,7 @@ while True:
     4. Update book progress
     5. List all books
     6. List books by tag
-    7. Pick a random to be read book\n
+    7. Pick a random book\n
     0. Save books and quit\n\n"""))
     try:
         match int(menu_choice):

@@ -29,6 +29,7 @@ def test_add_book():
          'currently_reading': False, 'pages_read': 0},
     ]
 
+
 # This test checks if the set book percent function is
 # working as intended. Because this function calls the
 # reverse percentage and delete book functions, it checks
@@ -42,7 +43,6 @@ def test_add_book():
 # meant to call the delete book function, so it checks
 # whether the test book has been removed from the test book
 # list.
-
 
 def test_set_book_percent():
     book_list = [
