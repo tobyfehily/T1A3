@@ -18,7 +18,7 @@ book_list = [
     {'title': 'the hands of the emperor', 'author': 'victoria goddard',
      'pages': 824, 'tags': ['fiction', 'fantasy'],
      'currently_reading': False, 'pages_read': 0},
-    ]
+]
 
 while True:
     menu_choice = input(("""\nWelcome! Select an option from below:\n
@@ -36,11 +36,18 @@ while True:
                 while True:
                     new_title = functions.add_book_info("book title")
                     new_author = functions.add_book_info("author")
-                    if functions.check_book_dupes(book_list, new_title, new_author):
-                        print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
+                    if functions.check_book_dupes(
+                            book_list, new_title, new_author):
+                        print(functions.emoji.emojize(
+                            f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue
                     else:
-                        functions.add_book(book_list, new_title, new_author, functions.add_pages(), functions.add_tags())
+                        functions.add_book(
+                            book_list,
+                            new_title,
+                            new_author,
+                            functions.add_pages(),
+                            functions.add_tags())
                         if functions.continue_prompt("add another book"):
                             continue
                         else:
@@ -60,12 +67,14 @@ while True:
             case 3:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(book_list, "mark as reading")
+                    book_selection = functions.select_book(
+                        book_list, "mark as reading")
                     if book_selection == '':
                         break
                     else:
                         functions.set_current_book(book_list, book_selection)
-                        if functions.continue_prompt("mark another book as reading"):
+                        if functions.continue_prompt(
+                                "mark another book as reading"):
                             continue
                         else:
                             break
