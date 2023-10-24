@@ -70,6 +70,7 @@ def delete_book(book_list, index):
     try:
         print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
         del book_list[index - 1]
+        quit_prompt = input("Press any key to exit")
     except IndexError:
         print("Selection out of range")
 
@@ -93,9 +94,8 @@ def set_book_pages(book_list, index, new_pages):
             print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
             quit_prompt = input("Press any key to exit")
         elif new_pages == book_list[index - 1]["pages"]:
-            print("You're all finished!")
-            delete_book(index)
-            quit_prompt = input("Press any key to exit")
+            print(emoji.emojize(":party_popper: You're all finished!"))
+            delete_book(book_list, index)
         else:
             book_list[index - 1]['pages_read'] = new_pages
     except ValueError:
@@ -108,7 +108,7 @@ def set_book_percent(book_list, index, new_percent):
         else:
             book_list[index - 1]["pages_read"] = round((float(new_percent) * float(book_list[index - 1]["pages"])) / 100) 
             if book_list[index - 1]["pages"] == book_list[index - 1]["pages_read"]:
-                print("You're all finished!")
-                delete_book(index)
+                print(emoji.emojize(":party_popper: You're all finished!"))
+                delete_book(book_list, index)
     except (ValueError):
         print("Please enter a number.")
