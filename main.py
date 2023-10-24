@@ -14,10 +14,11 @@ while True:
     2. Remove book
     3. Mark book as currently reading
     4. Update book progress
-    5. List currently reading books
-    6. List to be read books
-    7. List books by tag                     
-    8. Pick a random to be read book\n
+    5. List all books
+    6. List currently reading books
+    7. List to be read books
+    8. List books by tag                     
+    9. Pick a random to be read book\n
     0. Save books and quit\n\n"""))
     try:
         match int(menu_choice):
@@ -114,16 +115,19 @@ while True:
                     except ValueError:
                         print("You did not enter a number.")
             case 5:
-                functions.get_sorted_book_list(book_list, "currently reading")
+                functions.get_book_list(book_list)
+                quit_prompt = input("Press any key to exit")            
             case 6:
-                functions.get_sorted_book_list(book_list, "to be read")
+                functions.get_sorted_book_list(book_list, "currently reading")
             case 7:
+                functions.get_sorted_book_list(book_list, "to be read")
+            case 8:
                 functions.get_tags(book_list)
                 tag_choice = input("\nChoose a tag, or press Enter to cancel: ").lower()
                 if tag_choice != '':
                     functions.get_tag_book_list(book_list, tag_choice)
                     quit_prompt = input("Press any key to exit")
-            case 8:
+            case 9:
                 functions.get_random_book(book_list)
                 quit_prompt = input("Press any key to exit")
             case 0:
