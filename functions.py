@@ -204,7 +204,7 @@ def set_book_percent(book_list, index, new_percent):
                     print(emoji.emojize(
                         f"Only :open_book: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
                     break
-        except (ValueError):
+        except ValueError:
             print("Please enter a number.")
 
 
