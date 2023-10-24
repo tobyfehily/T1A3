@@ -50,16 +50,15 @@ while True:
             case 3:
                 while True:
                     functions.get_book_list(book_list)
-                    try:
-                        book_choice = int(input("Enter the number of the book to mark as currently reading, or enter 0 to quit: ")) 
-                        if book_choice == 0:
-                            break
-                        elif book_choice < 0:
-                            print("Must be a positive integer.")
+                    book_selection = functions.select_book(book_list, "Enter the number of the book to mark as currently reading, or press Enter to cancel: ")
+                    if book_selection == '':
+                        break
+                    else:
+                        functions.set_current_book(book_list, book_selection)
+                        if functions.continue_prompt("mark as reading"):
+                                continue
                         else:
-                            functions.set_current_book(book_list, book_choice)
-                    except ValueError:
-                        print("You did not enter a number.")
+                            break
             case 4:
                 while True:
                     functions.get_book_list(book_list)

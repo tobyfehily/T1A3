@@ -38,7 +38,7 @@ def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], cur
 def continue_prompt(prompt):
     continue_prompt = input(f"Would you like to {prompt} another book (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
-        continue_prompt = input(f"Please enter 'y' to {prompt} another books or 'n' to stop: ").lower()
+        continue_prompt = input(f"Please enter 'y' to {prompt} another book or 'n' to stop: ").lower()
     else:
         if continue_prompt == 'n':
             return False
@@ -123,21 +123,14 @@ def get_random_book(book_list):
     random_book = random.choice(to_be_read_book_list)
     print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
 
-
-
 def set_current_book(old_book_list, index):
-    try:
-        if old_book_list[index -1]["currently_reading"]:
-            print(emoji.emojize(f"You're already reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}"))
-            quit_prompt = input("Press any key to exit")
-        else:
-            old_book_list[index -1]["currently_reading"] = True
-            print(emoji.emojize(f"Enjoy reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
-            global book_list
-            book_list = old_book_list
-            quit_prompt = input("Press any key to exit")
-    except IndexError:
-        print("Selection out of range")
+    if old_book_list[index -1]["currently_reading"]:
+        print(emoji.emojize(f"You're already reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}"))
+    else:
+        old_book_list[index -1]["currently_reading"] = True
+        print(emoji.emojize(f"Enjoy reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
+        global book_list
+        book_list = old_book_list
 
 def set_book_pages(book_list, index, new_pages):
     try:
