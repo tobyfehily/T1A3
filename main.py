@@ -38,7 +38,7 @@ while True:
             case 2:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(book_list, "Enter the number of the book to delete, or press Enter to cancel: ")
+                    book_selection = functions.select_book(book_list, "delete")
                     if book_selection == '':
                         break
                     else:
@@ -50,7 +50,7 @@ while True:
             case 3:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(book_list, "Enter the number of the book to mark as currently reading, or press Enter to cancel: ")
+                    book_selection = functions.select_book(book_list, "mark as reading")
                     if book_selection == '':
                         break
                     else:
@@ -93,8 +93,10 @@ while True:
                 quit_prompt = input("Press any key to exit")            
             case 6:
                 functions.get_sorted_book_list(book_list, "currently reading")
+                quit_prompt = input("Press any key to exit") 
             case 7:
                 functions.get_sorted_book_list(book_list, "to be read")
+                quit_prompt = input("Press any key to exit") 
             case 8:
                 functions.get_tags(book_list)
                 tag_choice = input("\nChoose a tag, or press Enter to cancel: ").lower()

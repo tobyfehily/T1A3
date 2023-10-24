@@ -56,7 +56,7 @@ def get_book_list(list):
 
 def select_book(book_list, prompt):
     while True:
-        book_selection = input(prompt)
+        book_selection = input(f"Enter the number of the book to {prompt}, or press Enter to cancel: ")
         if book_selection == "":
             return book_selection
         else:
@@ -65,7 +65,7 @@ def select_book(book_list, prompt):
                 if int(book_selection) <= 0:
                     print("Must be a positive integer.")
                 elif int(book_selection) > len(book_list):
-                    print("Out of range.")
+                    raise IndexError("Out of range.")
                 else:
                     return book_selection
             except ValueError:
@@ -88,16 +88,12 @@ def get_sorted_book_list(book_list, sorting_choice):
             get_book_list(currently_reading_book_list)
         case "to be read":
             get_book_list(to_be_read_book_list)
-    quit_prompt = input("Press any key to exit")
 
 def get_tags(book_list):
-    unique_tags = []
-    for i in book_list:
-        unique_tags.extend(i['tags'])
-    print("Current tags:")
-    for i in set(unique_tags):
-        print(emoji.emojize(f":label:  {i}"))
-
+    tag_list = list(set(x for tags in book_list for x in tags['tags']))
+    print("Current tags:\n")
+    for tags in tag_list:
+        print(emoji.emojize(f":label:  {tags}"))
 
 def get_tag_book_list(book_list, tag):
     tag_book_list = []
