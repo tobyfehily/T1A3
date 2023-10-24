@@ -1,4 +1,4 @@
-import functions, sys
+import functions, sys, csv
 
 while True:
     menu_choice = input(("""\nWelcome! Select an option from below:\n
@@ -10,7 +10,7 @@ while True:
     6. List to be read books
     7. List books by tag                     
     8. Pick a random to be read book\n
-    0. Quit\n\n"""))
+    0. Export books as CSV and quit\n\n"""))
     try:
         match int(menu_choice):
             case 1:
@@ -40,7 +40,7 @@ while True:
                     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
                     unique_new_tags = set([x.strip() for x in new_tags.split(',')])
                     if new_tags == '':
-                        unique_new_tags = new_tags
+                        unique_new_tags = '[]'
                     functions.add_book(new_title, new_author, new_pages, unique_new_tags)
                     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
                     while continue_prompt not in ["y", "n"]:
@@ -119,10 +119,12 @@ while True:
                 functions.get_random_book()
                 quit_prompt = input("Press any key to exit")
             case 0:
+                with open('book_list.csv', 'w') as f:
+                    writer = csv.DictWriter(f, fieldnames=functions.book_list[0].keys())
+                    writer.writeheader()
+                    writer.writerows(functions.book_list)
                 sys.exit("Thanks for visiting! Happy reading.")
             case _:
                 print("Invalid input.")
     except ValueError:
         print("Invalid input.")
-
-
