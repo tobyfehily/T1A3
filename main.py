@@ -123,6 +123,11 @@ while True:
                     writer = csv.DictWriter(f, fieldnames=functions.book_list[0].keys())
                     writer.writeheader()
                     writer.writerows(functions.book_list)
+                with open('book_list.txt', 'w') as f:
+                    for books in functions.book_list:
+                        for key, value in books.items():
+                            f.write(f'{key}: {value}\n')
+                        f.write("\n")
                 sys.exit("Thanks for visiting! Happy reading.")
             case _:
                 print("Invalid input.")
