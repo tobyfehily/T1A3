@@ -16,6 +16,12 @@ def add_book_author():
         else:
             print("You need to enter an author.")
 
+def check_book_dupes(book_list, new_title, new_author):
+    for book in book_list:
+        if book['title'] == new_title and book['author'] == new_author:
+            return True
+    return False
+
 def add_pages():
     while True:
         try:
@@ -24,6 +30,12 @@ def add_pages():
         except ValueError:
             print("Please enter a number.")
 
+def add_tags():
+    new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
+    unique_new_tags = set([x.strip() for x in new_tags.split(',')])
+    if new_tags == '':
+        return new_tags
+    return unique_new_tags
 
 def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
@@ -32,11 +44,15 @@ def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], cur
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
     return book_list
 
-def check_book_dupes(new_title, new_author, book_list):
-    for book in book_list:
-        if book['title'] == new_title and book['author'] == new_author:
+def continue_adding_book():
+    continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
+    while continue_prompt not in ["y", "n"]:
+        continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
+    else:
+        if continue_prompt == 'n':
+            return False
+        else:
             return True
-    return False
 
 def get_tags(book_list):
     unique_tags = []

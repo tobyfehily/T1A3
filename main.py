@@ -26,24 +26,15 @@ while True:
                 while True:
                     new_title = functions.add_book_title()
                     new_author = functions.add_book_author()
-                    if functions.check_book_dupes(new_title, new_author, book_list):
+                    if functions.check_book_dupes(book_list, new_title, new_author):
                         print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue        
                     else:
-                        new_pages = functions.add_pages()                            
-                        new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
-                        unique_new_tags = set([x.strip() for x in new_tags.split(',')])
-                        if new_tags == '':
-                            unique_new_tags = new_tags
-                        functions.add_book(book_list, new_title, new_author, new_pages, unique_new_tags)
-                        continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
-                        while continue_prompt not in ["y", "n"]:
-                            continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
+                        functions.add_book(book_list, new_title, new_author, functions.add_pages(), functions.add_tags())
+                        if functions.continue_adding_book():
+                            continue
                         else:
-                            if continue_prompt == 'n':
-                                break
-                            else:
-                                continue
+                            break
             case 2:
                 while True:
                     functions.get_book_list(book_list)
