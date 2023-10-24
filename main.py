@@ -111,8 +111,9 @@ while True:
                 functions.get_sorted_book_list("to be read")
             case 7:
                 functions.get_tags(functions.book_list)
-                tag_choice = input("Choose a tag: ")
-                functions.get_tag_book_list(tag_choice)
+                tag_choice = input("Choose a tag, or press Enter to cancel: ")
+                if tag_choice != '':
+                    functions.get_tag_book_list(tag_choice)
             case 8:
                 functions.get_random_book()
             case 0:
