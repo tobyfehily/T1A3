@@ -29,6 +29,8 @@ while True:
                                 print("Please enter a number.")      
                     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
                     unique_new_tags = set([x.strip() for x in new_tags.split(',')])
+                    if new_tags == '':
+                        unique_new_tags = new_tags
                     functions.add_book(new_title, new_author, new_pages, unique_new_tags)
                     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
                     while continue_prompt not in ["y", "n"]:
@@ -76,7 +78,7 @@ while True:
                         else:
                             while True:
                                 try:
-                                    update_value = int(input("Enter the page or percent number: "))
+                                    update_value = int(input("Enter the current page or percent: "))
                                     while True:
                                         pages_or_percent = input("Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
                                         match pages_or_percent:
