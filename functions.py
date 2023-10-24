@@ -16,6 +16,15 @@ def add_book_author():
         else:
             print("You need to enter an author.")
 
+def add_pages():
+    while True:
+        try:
+            new_pages = int(input("Enter book pages: "))
+            return new_pages
+        except ValueError:
+            print("Please enter a number.")
+
+
 def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
     global book_list

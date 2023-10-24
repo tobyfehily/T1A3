@@ -30,25 +30,20 @@ while True:
                         print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue        
                     else:
-                        while True:
-                            try:
-                                new_pages = int(input("Enter book pages: "))
-                                break
-                            except ValueError:
-                                print("Please enter a number.")      
-                    new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
-                    unique_new_tags = set([x.strip() for x in new_tags.split(',')])
-                    if new_tags == '':
-                        unique_new_tags = new_tags
-                    functions.add_book(book_list, new_title, new_author, new_pages, unique_new_tags)
-                    continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
-                    while continue_prompt not in ["y", "n"]:
-                        continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
-                    else:
-                        if continue_prompt == 'n':
-                            break
+                        new_pages = functions.add_pages()                            
+                        new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
+                        unique_new_tags = set([x.strip() for x in new_tags.split(',')])
+                        if new_tags == '':
+                            unique_new_tags = new_tags
+                        functions.add_book(book_list, new_title, new_author, new_pages, unique_new_tags)
+                        continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
+                        while continue_prompt not in ["y", "n"]:
+                            continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
                         else:
-                            continue
+                            if continue_prompt == 'n':
+                                break
+                            else:
+                                continue
             case 2:
                 while True:
                     functions.get_book_list(book_list)

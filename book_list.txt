@@ -33,9 +33,9 @@ tags: ['non-fiction', 'python']
 currently_reading: False
 pages_read: 0
 
-title: test
-author: test
-pages: 534
+title: 432
+author: 432
+pages: 43
 tags: 
 currently_reading: False
 pages_read: 0
