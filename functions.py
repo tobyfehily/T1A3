@@ -53,6 +53,7 @@ def add_book(
         pages_read=pages_read)
     global book_list
     book_list = old_book_list.append(new_book)
+    print(book_list)
     print(emoji.emojize(
         f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
 
