@@ -1,4 +1,4 @@
-import functions, sys, csv, json
+import functions, sys, csv
 
 book_list = [
     {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
@@ -119,9 +119,9 @@ while True:
                 functions.get_sorted_book_list(book_list, "to be read")
             case 7:
                 functions.get_tags(book_list)
-                tag_choice = input("Choose a tag, or press Enter to cancel: ").lower()
+                tag_choice = input("\nChoose a tag, or press Enter to cancel: ").lower()
                 if tag_choice != '':
-                    functions.get_tag_book_list(tag_choice)
+                    functions.get_tag_book_list(book_list, tag_choice)
                     quit_prompt = input("Press any key to exit")
             case 8:
                 functions.get_random_book(book_list)

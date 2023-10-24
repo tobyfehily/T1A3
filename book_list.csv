@@ -1,8 +1,6 @@
 title,author,pages,tags,currently_reading,pages_read
-doppelganger,naomi klein,416,['non-fiction'],True,12
-"i, claudius",robert graves,468,"['non-fiction', 'ancient rome']",True,56
+doppelganger,naomi klein,416,['non-fiction'],True,0
+"i, claudius",robert graves,468,"['non-fiction', 'ancient rome']",True,0
 python for dummies,stef maruch,432,"['non-fiction', 'python']",False,0
 short book,test author,100,"['non-fiction', 'python']",False,0
 long book,test author,600,"['non-fiction', 'python']",False,0
-tre,tre,534,,True,0
-4325,543,543,{'test'},False,0

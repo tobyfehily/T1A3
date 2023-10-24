@@ -13,9 +13,9 @@ def check_book_dupes(new_title, new_author, book_list):
             return True
     return False
 
-def get_tags(tags_list):
+def get_tags(book_list):
     unique_tags = []
-    for i in tags_list:
+    for i in book_list:
         unique_tags.extend(i['tags'])
     print("Current tags:")
     for i in set(unique_tags):
@@ -42,7 +42,7 @@ def get_sorted_book_list(book_list, sorting_choice):
             get_book_list(to_be_read_book_list)
     quit_prompt = input("Press any key to exit")
 
-def get_tag_book_list(tag):
+def get_tag_book_list(book_list, tag):
     tag_book_list = []
     while True:
         for book in book_list:
