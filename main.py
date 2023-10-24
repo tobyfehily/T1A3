@@ -31,7 +31,7 @@ while True:
                         continue        
                     else:
                         functions.add_book(book_list, new_title, new_author, functions.add_pages(), functions.add_tags())
-                        if functions.continue_prompt("add"):
+                        if functions.continue_prompt("add another book"):
                             continue
                         else:
                             break
@@ -43,7 +43,7 @@ while True:
                         break
                     else:
                         functions.delete_book(book_list, book_selection)
-                        if functions.continue_prompt("remove"):
+                        if functions.continue_prompt("remove another book"):
                             continue
                         else:
                             break
@@ -98,14 +98,23 @@ while True:
                 functions.get_sorted_book_list(book_list, "to be read")
                 quit_prompt = input("Press any key to exit") 
             case 8:
-                functions.get_tags(book_list)
-                tag_choice = input("\nChoose a tag, or press Enter to cancel: ").lower()
-                if tag_choice != '':
-                    functions.get_tag_book_list(book_list, tag_choice)
-                    quit_prompt = input("Press any key to exit")
+                while True:
+                    functions.get_tags(book_list)
+                    tag_selection = functions.select_tags(book_list)
+                    if tag_selection == '':
+                        break
+                    else:
+                        if functions.continue_prompt("get more books by tag"):
+                                continue
+                        else:
+                            break
             case 9:
-                functions.get_random_book(book_list)
-                quit_prompt = input("Press any key to exit")
+                while True:
+                    functions.get_random_book(book_list)
+                    if functions.continue_prompt("get another random book"):
+                        continue
+                    else:
+                        break
             case 0:
                 with open('book_list.csv', 'w') as f:
                     writer = csv.DictWriter(f, fieldnames=book_list[0].keys())

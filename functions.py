@@ -36,9 +36,9 @@ def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], cur
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
 
 def continue_prompt(prompt):
-    continue_prompt = input(f"Would you like to {prompt} another book (y/n)?: ").lower()
+    continue_prompt = input(f"Would you like to {prompt} (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
-        continue_prompt = input(f"Please enter 'y' to {prompt} another book or 'n' to stop: ").lower()
+        continue_prompt = input(f"Please enter 'y' to {prompt} or 'n' to stop: ").lower()
     else:
         if continue_prompt == 'n':
             return False
@@ -95,29 +95,22 @@ def get_tags(book_list):
     for tags in tag_list:
         print(emoji.emojize(f":label:  {tags}"))
 
-def get_tag_book_list(book_list, tag):
+def select_tags(book_list):
     tag_book_list = []
     while True:
-        for book in book_list:
-            if tag in book['tags']:
-                tag_book_list.append(book)
-        if tag_book_list == []:
-            tag = input("No matching books. Enter a different tag, or press Enter to cancel: ")
-            if tag != '':
-                continue
-            else:    
-                break
+        tag = input("\nChoose a tag, or press Enter to cancel: ") 
+        if tag == "":
+            return tag
         else:
-            get_book_list(tag_book_list)
-            break
-
-def get_random_book(book_list):
-    to_be_read_book_list = []
-    for book in book_list:
-        if not book['currently_reading']:
-            to_be_read_book_list.append(book)
-    random_book = random.choice(to_be_read_book_list)
-    print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
+            for book in book_list:
+                if tag in book['tags']:
+                    tag_book_list.append(book)
+            if tag_book_list == []:
+                print("No matching books.")
+                continue
+            else:
+                get_book_list(tag_book_list)
+                break
 
 def set_current_book(old_book_list, index):
     if old_book_list[index -1]["currently_reading"]:
@@ -152,3 +145,7 @@ def set_book_percent(book_list, index, new_percent):
                 delete_book(book_list, index)
     except (ValueError):
         print("Please enter a number.")
+
+def get_random_book(book_list):
+    random_book = random.choice(book_list)
+    print(emoji.emojize(f"Why not read :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
