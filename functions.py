@@ -62,6 +62,32 @@ def get_book_list(list):
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
 
+def select_book(book_list, prompt):
+    while True:
+        book_selection = input(prompt)
+        if book_selection == "":
+            return book_selection
+        else:
+            try:
+                book_selection = int(book_selection)
+                if int(book_selection) <= 0:
+                    print("Must be a positive integer.")
+                elif int(book_selection) > len(book_list):
+                    print("Out of range.")
+                else:
+                    return book_selection
+            except ValueError:
+                print("You did not enter a number.")
+
+def delete_book(book_list, index):
+    try:
+        print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
+        del book_list[index - 1]
+        quit_prompt = input("Press any key to exit")
+    except IndexError:
+        print("Selection out of range")
+
+
 def get_sorted_book_list(book_list, sorting_choice):
     currently_reading_book_list = []
     to_be_read_book_list = []
@@ -110,13 +136,7 @@ def get_random_book(book_list):
     random_book = random.choice(to_be_read_book_list)
     print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
 
-def delete_book(book_list, index):
-    try:
-        print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
-        del book_list[index - 1]
-        quit_prompt = input("Press any key to exit")
-    except IndexError:
-        print("Selection out of range")
+
 
 def set_current_book(old_book_list, index):
     try:
