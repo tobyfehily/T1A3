@@ -3,6 +3,7 @@ import sys
 import csv
 import json
 
+
 try:
     with open('book_list.json') as f:
         book_list = json.load(f)
@@ -141,9 +142,11 @@ while True:
                                 f.write(f'{key}: {value}\n')
                             f.write("\n")
                     with open('book_list.json', 'w') as f:
-                        json.dump(book_list, f, indent=2)
+                        json.dump(book_list, f, indent=2, default=list)
                 except IndexError:
                     print("No books found, so no books saved.")
+                # except TypeError:
+                #     print("Stop mucking around with bytes.")
                 sys.exit("Thanks for visiting! Happy reading.")
     except ValueError:
         print("Invalid input.")
