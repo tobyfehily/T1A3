@@ -55,7 +55,7 @@ while True:
                         break
                     else:
                         functions.set_current_book(book_list, book_selection)
-                        if functions.continue_prompt("mark as reading"):
+                        if functions.continue_prompt("mark another book as reading"):
                                 continue
                         else:
                             break

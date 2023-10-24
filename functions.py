@@ -65,7 +65,7 @@ def select_book(book_list, prompt):
                 if int(book_selection) <= 0:
                     print("Must be a positive integer.")
                 elif int(book_selection) > len(book_list):
-                    raise IndexError("Out of range.")
+                    print("Out of range.")
                 else:
                     return book_selection
             except ValueError:
