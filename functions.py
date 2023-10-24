@@ -25,11 +25,13 @@ def check_book_dupes(new_title, new_author):
 #         unique_tags.extend(i['tags'])
 #     print("Current tags:")
 #     for x in set(unique_tags):
-#         print(f":tags: {x}")
+#         print(f"- {x}")
 
 def get_book_list(list):
     for i, book in enumerate(list):
         print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']}"))
+        for i in book['tags']:
+            print(emoji.emojize(f"    :label:  {i}"))
 
 def get_sorted_book_list(sorting_choice):
     currently_reading_book_list = []
