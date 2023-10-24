@@ -1,5 +1,21 @@
 import random, emoji
 
+def add_book_title():
+    while True:
+        new_title = input("Enter book title: ").lower()
+        if new_title != "":
+            return new_title
+        else:
+            print("You need to enter a book title.")
+
+def add_book_author():
+    while True:
+        new_author = input("Enter author: ").lower()
+        if new_author != "":
+            return new_author
+        else:
+            print("You need to enter an author.")
+
 def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
     global book_list
