@@ -19,13 +19,13 @@ def check_book_dupes(new_title, new_author):
             return True
     return False
 
-# def get_tags(tags_list):
-#     unique_tags = []
-#     for i in tags_list:
-#         unique_tags.extend(i['tags'])
-#     print("Current tags:")
-#     for x in set(unique_tags):
-#         print(f"- {x}")
+def get_tags(tags_list):
+    unique_tags = []
+    for i in tags_list:
+        unique_tags.extend(i['tags'])
+    print("Current tags:")
+    for i in set(unique_tags):
+        print(emoji.emojize(f":label:  {i}"))
 
 def get_book_list(list):
     for i, book in enumerate(list):
@@ -46,6 +46,16 @@ def get_sorted_book_list(sorting_choice):
             get_book_list(currently_reading_book_list)
         case "to be read":
             get_book_list(to_be_read_book_list)
+
+def get_tag_book_list(tag):
+    tag_book_list = []
+    for book in book_list:
+        if tag in book['tags']:
+            tag_book_list.append(book)
+    if tag_book_list == []:
+        print("No matching books")
+    else:
+        get_book_list(tag_book_list)
 
 def get_random_book():
     to_be_read_book_list = []

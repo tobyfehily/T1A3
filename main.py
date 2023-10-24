@@ -8,7 +8,7 @@ while True:
     4. Update book progress
     5. List currently reading books
     6. List to be read books
-    7. List books                     
+    7. List books by tag                     
     8. Pick a random to be read book\n
     0. Quit\n\n"""))
     try:
@@ -100,7 +100,9 @@ while True:
             case 6:
                 functions.get_sorted_book_list("to be read")
             case 7:
-                functions.get_book_list(functions.book_list)
+                functions.get_tags(functions.book_list)
+                tag_choice = input("Choose a tag: ")
+                functions.get_tag_book_list(tag_choice)
             case 8:
                 functions.get_random_book()
             case 0:
