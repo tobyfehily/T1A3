@@ -91,12 +91,15 @@ def set_book_pages(book_list, index, new_pages):
     try:
         if new_pages > book_list[index - 1]["pages"]:
             print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
+            quit_prompt = input("Press any key to exit")
         elif new_pages == book_list[index - 1]["pages"]:
             print("You're all finished!")
             delete_book(index)
+            quit_prompt = input("Press any key to exit")
         else:
             book_list[index - 1]['pages_read'] = new_pages
             print(emoji.emojize(f"Only :page_facing_up: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
+            quit_prompt = input("Press any key to exit")
     except ValueError:
         print("Please enter a number.")
 
@@ -109,8 +112,10 @@ def set_book_percent(book_list, index, new_percent):
             if book_list[index - 1]["pages"] == book_list[index - 1]["pages_read"]:
                 print("You're all finished!")
                 delete_book(index)
+                quit_prompt = input("Press any key to exit")
             else:
                 print(emoji.emojize(f"Only :page_facing_up: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
+                quit_prompt = input("Press any key to exit")
     except (ValueError):
         print("Please enter a number.")
     
