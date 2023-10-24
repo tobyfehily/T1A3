@@ -1,4 +1,4 @@
-import random
+import random, emoji
 
 book_list = [
     {'title': 'Doppelganger', 'author': 'Naomi Klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
@@ -25,11 +25,11 @@ def get_tags(tags_list):
         unique_tags.extend(i['tags'])
     print("Current tags:")
     for x in set(unique_tags):
-        print(f"- {x}")
+        print(f":tags: {x}")
 
 def get_book_list(list):
     for i, book in enumerate(list):
-        print(f"{i + 1}: '{book['title']}' by {book['author']}")
+        print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']}"))
 
 def get_sorted_book_list(sorting_choice):
     currently_reading_book_list = []
@@ -45,21 +45,13 @@ def get_sorted_book_list(sorting_choice):
         case "to be read":
             get_book_list(to_be_read_book_list)
 
-def get_to_be_read_book_list():
-    to_be_read_book_list = []
-    for book in book_list:
-        if not book['currently_reading']:
-            to_be_read_book_list.append(book)
-    get_book_list(to_be_read_book_list)
-
-
 def get_random_book():
     to_be_read_book_list = []
     for book in book_list:
         if not book['currently_reading']:
             to_be_read_book_list.append(book)
     random_book = random.choice(to_be_read_book_list)
-    print(f"Why not try '{random_book['title']}' by {random_book['author']}?")
+    print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand: {random_book['author']}?"))
 
 def delete_book(index):
     try:
@@ -74,7 +66,7 @@ def set_current_book(index):
             print(f"You're already reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}")
         else:
             book_list[index -1]["currently_reading"] == True
-            print(f"Enjoy reading {book_list[index - 1]['title']} by {book_list[index - 1]['author']}!")
+            print(emoji.emojize(f"Enjoy reading :open_book: {book_list[index - 1]['title']} by :writing_hand: {book_list[index - 1]['author']}!"))
     except IndexError:
         print("Selection out of range")
 

@@ -8,7 +8,8 @@ while True:
     4. Update book progress
     5. List currently reading books
     6. List to be read books
-    7. Pick a random to be read book\n
+    7. List books                     
+    8. Pick a random to be read book\n
     0. Quit\n\n"""))
     try:
         match int(menu_choice):
@@ -27,9 +28,8 @@ while True:
                             except ValueError:
                                 print("Please enter a number.")      
                     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
-                    if new_tags != "":
-                        unique_new_tags = set([x.strip() for x in new_tags.split(',')])
-                        functions.add_book(new_title, new_author, new_pages, unique_new_tags)
+                    unique_new_tags = set([x.strip() for x in new_tags.split(',')])
+                    functions.add_book(new_title, new_author, new_pages, unique_new_tags)
                     continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
                     while continue_prompt not in ["y", "n"]:
                         continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
@@ -98,6 +98,8 @@ while True:
             case 6:
                 functions.get_sorted_book_list("to be read")
             case 7:
+                functions.get_book_list(functions.book_list)
+            case 8:
                 functions.get_random_book()
             case 0:
                 sys.exit("Thanks for visiting! Happy reading.")
