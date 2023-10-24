@@ -72,13 +72,9 @@ def select_book(book_list, prompt):
                 print("You did not enter a number.")
 
 def delete_book(book_list, index):
-    try:
-        print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
-        del book_list[index - 1]
-        quit_prompt = input("Press any key to exit")
-    except IndexError:
-        print("Selection out of range")
-
+    print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
+    del book_list[index - 1]
+    quit_prompt = input("Press Enter to exit")
 
 def get_sorted_book_list(book_list, sorting_choice):
     currently_reading_book_list = []

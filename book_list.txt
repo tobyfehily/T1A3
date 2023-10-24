@@ -1,10 +1,3 @@
-title: doppelganger
-author: naomi klein
-pages: 416
-tags: ['non-fiction']
-currently_reading: True
-pages_read: 0
-
 title: i, claudius
 author: robert graves
 pages: 468
@@ -30,13 +23,6 @@ title: long book
 author: test author
 pages: 600
 tags: ['non-fiction', 'python']
-currently_reading: False
-pages_read: 0
-
-title: 432
-author: tyhtr
-pages: 546
-tags: 
 currently_reading: False
 pages_read: 0
 

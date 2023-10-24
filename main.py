@@ -42,17 +42,7 @@ while True:
                     if book_selection == '':
                         break
                     else:
-                        print(book_selection)
-                    # try:
-                    #     book_choice = int(input("Enter the number of the book to delete, or enter 0 to quit: ")) 
-                    #     if book_choice == 0:
-                    #         break
-                    #     elif book_choice < 0:
-                    #         print("Must be a positive integer.")
-                    #     else:
-                    #         functions.delete_book(book_list, book_choice)
-                    # except ValueError:
-                    #     print("You did not enter a number.")
+                        functions.delete_book(book_list, book_selection)
             case 3:
                 while True:
                     functions.get_book_list(book_list)
