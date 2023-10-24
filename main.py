@@ -113,7 +113,7 @@ while True:
                 quit_prompt = input("Press any key to exit")
             case 7:
                 functions.get_tags(functions.book_list)
-                tag_choice = input("Choose a tag, or press Enter to cancel: ")
+                tag_choice = input("Choose a tag, or press Enter to cancel: ").lower()
                 if tag_choice != '':
                     functions.get_tag_book_list(tag_choice)
                     quit_prompt = input("Press any key to exit")

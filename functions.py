@@ -49,13 +49,19 @@ def get_sorted_book_list(sorting_choice):
 
 def get_tag_book_list(tag):
     tag_book_list = []
-    for book in book_list:
-        if tag in book['tags']:
-            tag_book_list.append(book)
-    if tag_book_list == []:
-        print("No matching books")
-    else:
-        get_book_list(tag_book_list)
+    while True:
+        for book in book_list:
+            if tag in book['tags']:
+                tag_book_list.append(book)
+        if tag_book_list == []:
+            tag = input("No matching books. Enter a different tag, or press Enter to cancel: ")
+            if tag != "":
+                continue
+            else:    
+                break
+        else:
+            get_book_list(tag_book_list)
+            break
 
 def get_random_book():
     to_be_read_book_list = []
