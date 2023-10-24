@@ -44,74 +44,101 @@ while True:
             case 2:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(book_list, "delete")
-                    if book_selection == '':
+                    if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
                         break
                     else:
-                        functions.delete_book(book_list, book_selection)
-                        if functions.continue_prompt("remove another book"):
-                            continue
-                        else:
+                        book_selection = functions.select_book(book_list, "delete")
+                        if book_selection == '':
                             break
+                        else:
+                            functions.delete_book(book_list, book_selection)
+                            if functions.continue_prompt("remove another book"):
+                                continue
+                            else:
+                                break
             case 3:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(
-                        book_list, "mark as reading")
-                    if book_selection == '':
+                    if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
                         break
                     else:
-                        functions.set_current_book(book_list, book_selection)
-                        if functions.continue_prompt(
-                                "mark another book as reading"):
-                            continue
-                        else:
+                        book_selection = functions.select_book(
+                            book_list, "mark as reading")
+                        if book_selection == '':
                             break
+                        else:
+                            functions.set_current_book(book_list, book_selection)
+                            if functions.continue_prompt(
+                                    "mark another book as reading"):
+                                continue
+                            else:
+                                break
             case 4:
                 while True:
                     functions.get_book_list(book_list)
-                    book_selection = functions.select_book(book_list, "update")
-                    if book_selection == '':
+                    if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
                         break
                     else:
-                        functions.set_book_progress(book_list, book_selection)
-                        if functions.continue_prompt("update another book"):
-                            continue
-                        else:
+                        book_selection = functions.select_book(book_list, "update")
+                        if book_selection == '':
                             break
+                        else:
+                            functions.set_book_progress(book_list, book_selection)
+                            if functions.continue_prompt("update another book"):
+                                continue
+                            else:
+                                break
             case 5:
                 functions.get_book_list(book_list)
-                quit_prompt = input("Press any key to exit")
+                if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                        break
+                else:
+                    quit_prompt = input("Press any key to exit")
             case 6:
                 while True:
                     functions.get_tags(book_list)
-                    tag_selection = functions.select_tags(book_list)
-                    if tag_selection == '':
+                    if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
                         break
                     else:
-                        if functions.continue_prompt("get more books by tag"):
+                        tag_selection = functions.select_tags(book_list)
+                        if tag_selection == '':
+                            break
+                        else:
+                            if functions.continue_prompt("get more books by tag"):
+                                continue
+                            else:
+                                break
+            case 7:
+                while True:
+                    if book_list == []:
+                        cancel_prompt = input("No books found. Press Enter to return to menu.")
+                        break
+                    else:
+                        functions.get_random_book(book_list)                    
+                        if functions.continue_prompt("get another random book"):
                             continue
                         else:
                             break
-            case 7:
-                while True:
-                    functions.get_random_book(book_list)
-                    if functions.continue_prompt("get another random book"):
-                        continue
-                    else:
-                        break
             case 0:
-                with open('book_list.csv', 'w') as f:
-                    writer = csv.DictWriter(f, fieldnames=book_list[0].keys())
-                    writer.writeheader()
-                    writer.writerows(book_list)
-                with open('book_list.txt', 'w') as f:
-                    for books in book_list:
-                        for key, value in books.items():
-                            f.write(f'{key}: {value}\n')
-                        f.write("\n")
-                with open('book_list.json', 'w') as f:
-                    json.dump(book_list, f, indent=2)
+                try:
+                    with open('book_list.csv', 'w') as f:
+                        writer = csv.DictWriter(f, fieldnames=book_list[0].keys())
+                        writer.writeheader()
+                        writer.writerows(book_list)
+                    with open('book_list.txt', 'w') as f:
+                        for books in book_list:
+                            for key, value in books.items():
+                                f.write(f'{key}: {value}\n')
+                            f.write("\n")
+                    with open('book_list.json', 'w') as f:
+                        json.dump(book_list, f, indent=2)
+                except IndexError:
+                    print("No books found, so no books saved.")
                 sys.exit("Thanks for visiting! Happy reading.")
     except ValueError:
         print("Invalid input.")
