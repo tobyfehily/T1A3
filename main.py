@@ -1,24 +1,10 @@
 import functions
 import sys
 import csv
+import json
 
-book_list = [
-    {'title': 'doppelganger', 'author': 'naomi klein',
-     'pages': 416, 'tags': ['non-fiction'],
-     'currently_reading': True, 'pages_read': 265},
-    {'title': 'i, claudius', 'author': 'robert graves',
-     'pages': 468, 'tags': ['non-fiction', 'ancient rome'],
-     'currently_reading': True, 'pages_read': 262},
-    {'title': 'python for dummies', 'author': 'stef maruch',
-     'pages': 432, 'tags': ['non-fiction', 'python'],
-     'currently_reading': False, 'pages_read': 0},
-    {'title': 'the covenant of water', 'author': 'abraham verghese',
-     'pages': 736, 'tags': ['fiction'],
-     'currently_reading': False, 'pages_read': 0},
-    {'title': 'the hands of the emperor', 'author': 'victoria goddard',
-     'pages': 824, 'tags': ['fiction', 'fantasy'],
-     'currently_reading': False, 'pages_read': 0},
-]
+with open('book_list.json') as f:
+    book_list = json.load(f)
 
 while True:
     menu_choice = input(("""\nWelcome! Select an option from below:\n
@@ -121,6 +107,8 @@ while True:
                         for key, value in books.items():
                             f.write(f'{key}: {value}\n')
                         f.write("\n")
+                with open('book_list.json', 'w') as f:
+                    json.dump(book_list, f, indent=2)
                 sys.exit("Thanks for visiting! Happy reading.")
     except ValueError:
         print("Invalid input.")
