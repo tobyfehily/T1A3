@@ -30,10 +30,10 @@ def add_pages():
 def add_tags():
     new_tags = input(
         "Enter tags separated by a comma, or press Enter to skip: ")
-    unique_new_tags = set([x.strip() for x in new_tags.split(',')])
     if new_tags == '':
         return new_tags
-    return unique_new_tags
+    else:
+        return set([x.strip() for x in new_tags.split(',')])
 
 
 def add_book(
@@ -53,7 +53,6 @@ def add_book(
         pages_read=pages_read)
     global book_list
     book_list = old_book_list.append(new_book)
-    print(book_list)
     print(emoji.emojize(
         f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
 
