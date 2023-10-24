@@ -1,4 +1,6 @@
-import random, emoji
+import random
+import emoji
+
 
 def add_book_info(prompt):
     while True:
@@ -8,11 +10,13 @@ def add_book_info(prompt):
         else:
             print(f"You need to enter your {prompt}.")
 
+
 def check_book_dupes(book_list, new_title, new_author):
     for book in book_list:
         if book['title'] == new_title and book['author'] == new_author:
             return True
     return False
+
 
 def add_pages():
     while True:
@@ -22,6 +26,7 @@ def add_pages():
         except ValueError:
             print("Please enter a number.")
 
+
 def add_tags():
     new_tags = input("Enter tags separated by a comma, or press Enter to skip: ")
     unique_new_tags = set([x.strip() for x in new_tags.split(',')])
@@ -29,11 +34,13 @@ def add_tags():
         return new_tags
     return unique_new_tags
 
-def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
-    new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
+
+def add_book(old_book_list, new_title, new_author, new_pages, new_tags=[], currently_reading=False, pages_read=0):
+    new_book = dict(title=new_title, author=new_author, pages=new_pages, tags=new_tags, currently_reading=currently_reading, pages_read=pages_read)
     global book_list
     book_list = old_book_list.append(new_book)
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
+
 
 def continue_prompt(prompt):
     continue_prompt = input(f"Would you like to {prompt} (y/n)?: ").lower()
@@ -45,17 +52,21 @@ def continue_prompt(prompt):
         else:
             return True
 
+
 def percentage(portion, whole):
     return round((float(portion) / float(whole)) * 100)
 
+
 def reverse_percentage(portion, whole):
     return round((float(portion) * float(whole)) / 100)
+
 
 def get_book_list(list):
     for i, book in enumerate(list):
         print(emoji.emojize(f"[{i + 1}] :open_book: {book['title']} | :writing_hand:  {book['author']} | :page_facing_up: {book['pages']} pages total | :check_mark_button: {book['pages_read']} pages / {percentage((book['pages_read']), (book['pages']))} percent read{' | :thumbs_up: now reading' if book['currently_reading'] else ''}"))
         for i in book['tags']:
             print(emoji.emojize(f"    :label:  {i}"))
+
 
 def select_book(book_list, prompt):
     while True:
@@ -74,9 +85,11 @@ def select_book(book_list, prompt):
             except ValueError:
                 print("You did not enter a number.")
 
+
 def delete_book(book_list, index):
     print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
     del book_list[index - 1]
+
 
 def get_tags(book_list):
     tag_list = list(set(x for tags in book_list for x in tags['tags']))
@@ -84,10 +97,11 @@ def get_tags(book_list):
     for tags in tag_list:
         print(emoji.emojize(f":label:  {tags}"))
 
+
 def select_tags(book_list):
     tag_book_list = []
     while True:
-        tag = input("\nType a tag, or press Enter to cancel: ").lower() 
+        tag = input("\nType a tag, or press Enter to cancel: ").lower()
         if tag == "":
             return tag
         else:
@@ -101,14 +115,16 @@ def select_tags(book_list):
                 get_book_list(tag_book_list)
                 break
 
+
 def set_current_book(old_book_list, index):
-    if old_book_list[index -1]["currently_reading"]:
+    if old_book_list[index - 1]["currently_reading"]:
         print(emoji.emojize(f"You're already reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
     else:
-        old_book_list[index -1]["currently_reading"] = True
+        old_book_list[index - 1]["currently_reading"] = True
         print(emoji.emojize(f"Enjoy reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
         global book_list
         book_list = old_book_list
+
 
 def set_book_progress(book_list, index):
     while True:
@@ -130,6 +146,7 @@ def set_book_progress(book_list, index):
         except ValueError:
             print("You did not enter a number")
 
+
 def set_book_pages(book_list, index, new_pages):
     while True:
         try:
@@ -146,6 +163,7 @@ def set_book_pages(book_list, index, new_pages):
         except ValueError:
             print("Please enter a number.")
 
+
 def set_book_percent(book_list, index, new_percent):
     while True:
         try:
@@ -156,11 +174,12 @@ def set_book_percent(book_list, index, new_percent):
                     delete_book(book_list, index)
                     break
                 else:
-                    book_list[index - 1]["pages_read"] = reverse_percentage(new_percent, book_list[index - 1]["pages"]) 
+                    book_list[index - 1]["pages_read"] = reverse_percentage(new_percent, book_list[index - 1]["pages"])
                     print(emoji.emojize(f"Only :open_book: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
                     break
         except (ValueError):
             print("Please enter a number.")
+
 
 def get_random_book(book_list):
     random_book = random.choice(book_list)

@@ -1,11 +1,23 @@
-import functions, sys, csv
+import functions
+import sys
+import csv
 
 book_list = [
-    {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
-    {'title': 'i, claudius', 'author': 'robert graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
-    {'title': 'python for dummies', 'author': 'stef maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-    {'title': 'short book', 'author': 'test author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-    {'title': 'long book', 'author': 'test author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    {'title': 'doppelganger', 'author': 'naomi klein',
+     'pages': 416, 'tags': ['non-fiction'],
+     'currently_reading': True, 'pages_read': 265},
+    {'title': 'i, claudius', 'author': 'robert graves',
+     'pages': 468, 'tags': ['non-fiction', 'ancient rome'],
+     'currently_reading': True, 'pages_read': 262},
+    {'title': 'python for dummies', 'author': 'stef maruch',
+     'pages': 432, 'tags': ['non-fiction', 'python'],
+     'currently_reading': False, 'pages_read': 0},
+    {'title': 'the covenant of water', 'author': 'abraham verghese',
+     'pages': 736, 'tags': ['fiction'],
+     'currently_reading': False, 'pages_read': 0},
+    {'title': 'the hands of the emperor', 'author': 'victoria goddard',
+     'pages': 824, 'tags': ['fiction', 'fantasy'],
+     'currently_reading': False, 'pages_read': 0},
     ]
 
 while True:
@@ -15,7 +27,7 @@ while True:
     3. Mark book as currently reading
     4. Update book progress
     5. List all books
-    6. List books by tag                     
+    6. List books by tag
     7. Pick a random to be read book\n
     0. Save books and quit\n\n"""))
     try:
@@ -26,7 +38,7 @@ while True:
                     new_author = functions.add_book_info("author")
                     if functions.check_book_dupes(book_list, new_title, new_author):
                         print(functions.emoji.emojize(f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
-                        continue        
+                        continue
                     else:
                         functions.add_book(book_list, new_title, new_author, functions.add_pages(), functions.add_tags())
                         if functions.continue_prompt("add another book"):
@@ -54,7 +66,7 @@ while True:
                     else:
                         functions.set_current_book(book_list, book_selection)
                         if functions.continue_prompt("mark another book as reading"):
-                                continue
+                            continue
                         else:
                             break
             case 4:
@@ -66,12 +78,12 @@ while True:
                     else:
                         functions.set_book_progress(book_list, book_selection)
                         if functions.continue_prompt("update another book"):
-                                continue
+                            continue
                         else:
                             break
             case 5:
                 functions.get_book_list(book_list)
-                quit_prompt = input("Press any key to exit")            
+                quit_prompt = input("Press any key to exit")
             case 6:
                 while True:
                     functions.get_tags(book_list)
@@ -80,7 +92,7 @@ while True:
                         break
                     else:
                         if functions.continue_prompt("get more books by tag"):
-                                continue
+                            continue
                         else:
                             break
             case 7:
@@ -101,7 +113,5 @@ while True:
                             f.write(f'{key}: {value}\n')
                         f.write("\n")
                 sys.exit("Thanks for visiting! Happy reading.")
-            case _:
-                print("Invalid input.")
     except ValueError:
         print("Invalid input.")
