@@ -98,7 +98,6 @@ def set_book_pages(book_list, index, new_pages):
             quit_prompt = input("Press any key to exit")
         else:
             book_list[index - 1]['pages_read'] = new_pages
-            quit_prompt = input("Press any key to exit")
     except ValueError:
         print("Please enter a number.")
 
@@ -111,6 +110,5 @@ def set_book_percent(book_list, index, new_percent):
             if book_list[index - 1]["pages"] == book_list[index - 1]["pages_read"]:
                 print("You're all finished!")
                 delete_book(index)
-            quit_prompt = input("Press any key to exit")
     except (ValueError):
         print("Please enter a number.")
