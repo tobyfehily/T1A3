@@ -35,10 +35,10 @@ def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], cur
     book_list = old_book_list.append(new_book)
     print(emoji.emojize(f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
 
-def continue_adding_book():
-    continue_prompt = input("Would you like to add another book (y/n)?: ").lower()
+def continue_prompt(prompt):
+    continue_prompt = input(f"Would you like to {prompt} another book (y/n)?: ").lower()
     while continue_prompt not in ["y", "n"]:
-        continue_prompt = input("Please enter 'y' to continue adding books or 'n' to stop: ").lower()
+        continue_prompt = input(f"Please enter 'y' to {prompt} another books or 'n' to stop: ").lower()
     else:
         if continue_prompt == 'n':
             return False
@@ -74,7 +74,6 @@ def select_book(book_list, prompt):
 def delete_book(book_list, index):
     print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
     del book_list[index - 1]
-    quit_prompt = input("Press Enter to exit")
 
 def get_sorted_book_list(book_list, sorting_choice):
     currently_reading_book_list = []

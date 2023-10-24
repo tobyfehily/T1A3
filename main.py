@@ -31,7 +31,7 @@ while True:
                         continue        
                     else:
                         functions.add_book(book_list, new_title, new_author, functions.add_pages(), functions.add_tags())
-                        if functions.continue_adding_book():
+                        if functions.continue_prompt("add"):
                             continue
                         else:
                             break
@@ -43,6 +43,10 @@ while True:
                         break
                     else:
                         functions.delete_book(book_list, book_selection)
+                        if functions.continue_prompt("remove"):
+                            continue
+                        else:
+                            break
             case 3:
                 while True:
                     functions.get_book_list(book_list)

@@ -1,10 +1,3 @@
-title: i, claudius
-author: robert graves
-pages: 468
-tags: ['non-fiction', 'ancient rome']
-currently_reading: True
-pages_read: 0
-
 title: python for dummies
 author: stef maruch
 pages: 432
