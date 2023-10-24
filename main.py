@@ -145,8 +145,8 @@ while True:
                         json.dump(book_list, f, indent=2, default=list)
                 except IndexError:
                     print("No books found, so no books saved.")
-                # except TypeError:
-                #     print("Stop mucking around with bytes.")
+                except TypeError:
+                    print("Save failed, error converting books to JSON.")
                 sys.exit("Thanks for visiting! Happy reading.")
     except ValueError:
         print("Invalid input.")
