@@ -71,11 +71,17 @@ def continue_prompt(prompt):
 
 
 def percentage(portion, whole):
-    return round((float(portion) / float(whole)) * 100)
+    try:
+        return round((float(portion) / float(whole)) * 100)
+    except ZeroDivisionError:
+        print("Cannot divide by zero.")
 
 
 def reverse_percentage(portion, whole):
-    return round((float(portion) * float(whole)) / 100)
+    try:
+        return round((float(portion) * float(whole)) / 100)
+    except ZeroDivisionError:
+        print("Cannot divide by zero.")
 
 
 def get_book_list(list):
@@ -94,12 +100,13 @@ def select_book(book_list, prompt):
         else:
             try:
                 book_selection = int(book_selection)
-                if int(book_selection) <= 0:
-                    print("Must be more than 0.")
-                elif int(book_selection) > len(book_list):
-                    print("Out of range.")
-                else:
-                    return book_selection
+                if book_selection <= 0:
+                    print("Must be more than zero.")
+                    continue
+                book_list[book_selection - 1]
+                return book_selection
+            except IndexError:
+                print("Out of range.")
             except ValueError:
                 print("You did not enter a number.")
 
@@ -162,7 +169,7 @@ def set_book_progress(book_list, index):
                         set_book_percent(book_list, index, update_value)
                         break
                     case _:
-                        print("Invalid input")
+                        print("Invalid input. Type 'pages' or 'percent': ")
                         continue
             break
         except ValueError:
@@ -171,41 +178,35 @@ def set_book_progress(book_list, index):
 
 def set_book_pages(book_list, index, new_pages):
     while True:
-        try:
-            if new_pages > book_list[index - 1]["pages"]:
-                print(emoji.emojize(
-                    f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
-                break
-            elif new_pages == book_list[index - 1]["pages"]:
-                delete_book(book_list, index)
-                break
-            else:
-                print(emoji.emojize(
-                    f"Only :open_book: {book_list[index - 1]['pages'] - new_pages} pages to go!"))
-                book_list[index - 1]['pages_read'] = new_pages
-                break
-        except ValueError:
-            print("Please enter a number.")
+        if new_pages > book_list[index - 1]["pages"]:
+            print(emoji.emojize(
+                f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
+            break
+        elif new_pages == book_list[index - 1]["pages"]:
+            delete_book(book_list, index)
+            break
+        else:
+            print(emoji.emojize(
+                f"Only :open_book: {book_list[index - 1]['pages'] - new_pages} pages to go!"))
+            book_list[index - 1]['pages_read'] = new_pages
+            break
 
 
 def set_book_percent(book_list, index, new_percent):
     while True:
-        try:
-            while new_percent < 0 or new_percent > 100:
-                new_percent = int(
-                    input("Please enter a valid percentage between 0 and 100: "))
+        while new_percent < 0 or new_percent > 100:
+            new_percent = int(
+                input("Please enter a valid percentage between 0 and 100: "))
+        else:
+            if new_percent == 100:
+                delete_book(book_list, index)
+                break
             else:
-                if new_percent == 100:
-                    delete_book(book_list, index)
-                    break
-                else:
-                    book_list[index - 1]["pages_read"] = reverse_percentage(
-                        new_percent, book_list[index - 1]["pages"])
-                    print(emoji.emojize(
-                        f"Only :open_book: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
-                    break
-        except ValueError:
-            print("Please enter a number.")
+                book_list[index - 1]["pages_read"] = reverse_percentage(
+                    new_percent, book_list[index - 1]["pages"])
+                print(emoji.emojize(
+                    f"Only :open_book: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
+                break
 
 
 def get_random_book(book_list):
@@ -213,7 +214,9 @@ def get_random_book(book_list):
     print(emoji.emojize(
         f"Why not read :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
 
+
 def check_empty_book_list(book_list):
     if book_list == []:
-        cancel_prompt = input("No books found. Press Enter to return to menu: ")
+        cancel_prompt = input(
+            "No books found. Press Enter to return to menu: ")
         return True

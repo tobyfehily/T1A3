@@ -47,12 +47,14 @@ while True:
                         break
                     else:
                         functions.get_book_list(book_list)
-                        book_selection = functions.select_book(book_list, "delete")
+                        book_selection = functions.select_book(
+                            book_list, "delete")
                         if book_selection == '':
                             break
                         else:
                             functions.delete_book(book_list, book_selection)
-                            if functions.continue_prompt("remove another book"):
+                            if functions.continue_prompt(
+                                    "remove another book"):
                                 continue
                             else:
                                 break
@@ -63,11 +65,12 @@ while True:
                     else:
                         functions.get_book_list(book_list)
                         book_selection = functions.select_book(
-                        book_list, "mark as reading")
+                            book_list, "mark as reading")
                         if book_selection == '':
                             break
                         else:
-                            functions.set_current_book(book_list, book_selection)
+                            functions.set_current_book(
+                                book_list, book_selection)
                             if functions.continue_prompt(
                                     "mark another book as reading"):
                                 continue
@@ -79,22 +82,26 @@ while True:
                         break
                     else:
                         functions.get_book_list(book_list)
-                        book_selection = functions.select_book(book_list, "update")
+                        book_selection = functions.select_book(
+                            book_list, "update")
                         if book_selection == '':
                             break
                         else:
-                            functions.set_book_progress(book_list, book_selection)
-                            if functions.continue_prompt("update another book"):
+                            functions.set_book_progress(
+                                book_list, book_selection)
+                            if functions.continue_prompt(
+                                    "update another book"):
                                 continue
                             else:
                                 break
             case 5:
                 while True:
                     if functions.check_empty_book_list(book_list):
-                            break
+                        break
                     else:
                         functions.get_book_list(book_list)
-                        quit_prompt = input("Press any key to exit")
+                        quit_prompt = input("Press Enter to exit")
+                        break
             case 6:
                 while True:
                     if functions.check_empty_book_list(book_list):
@@ -105,7 +112,8 @@ while True:
                         if tag_selection == '':
                             break
                         else:
-                            if functions.continue_prompt("get more books by tag"):
+                            if functions.continue_prompt(
+                                    "get more books by tag"):
                                 continue
                             else:
                                 break
@@ -114,15 +122,17 @@ while True:
                     if functions.check_empty_book_list(book_list):
                         break
                     else:
-                        functions.get_random_book(book_list)                    
-                        if functions.continue_prompt("get another random book"):
+                        functions.get_random_book(book_list)
+                        if functions.continue_prompt(
+                                "get another random book"):
                             continue
                         else:
                             break
             case 0:
                 try:
                     with open('book_list.csv', 'w') as f:
-                        writer = csv.DictWriter(f, fieldnames=book_list[0].keys())
+                        writer = csv.DictWriter(
+                            f, fieldnames=book_list[0].keys())
                         writer.writeheader()
                         writer.writerows(book_list)
                     with open('book_list.txt', 'w') as f:
