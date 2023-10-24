@@ -1,6 +1,12 @@
 import functions, sys, csv, json
 
-book_list = []
+book_list = [
+    {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
+    {'title': 'i, claudius', 'author': 'robert graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
+    {'title': 'python for dummies', 'author': 'stef maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    {'title': 'short book', 'author': 'test author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    {'title': 'long book', 'author': 'test author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    ]
 
 while True:
     menu_choice = input(("""\nWelcome! Select an option from below:\n
@@ -62,7 +68,7 @@ while True:
                         elif book_choice < 0:
                             print("Must be a positive integer.")
                         else:
-                            functions.delete_book(book_choice)
+                            functions.delete_book(book_list, book_choice)
                     except ValueError:
                         print("You did not enter a number.")
             case 3:
@@ -75,7 +81,7 @@ while True:
                         elif book_choice < 0:
                             print("Must be a positive integer.")
                         else:
-                            functions.set_current_book(book_choice)
+                            functions.set_current_book(book_list, book_choice)
                     except ValueError:
                         print("You did not enter a number.")
             case 4:
@@ -95,10 +101,10 @@ while True:
                                         pages_or_percent = input("Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
                                         match pages_or_percent:
                                             case "pages":
-                                                    functions.set_book_pages(book_choice, update_value)
+                                                    functions.set_book_pages(book_list, book_choice, update_value)
                                                     break
                                             case "percent":
-                                                    functions.set_book_percent(book_choice, update_value)
+                                                    functions.set_book_percent(book_list, book_choice, update_value)
                                                     break
                                             case _:
                                                 print("Invalid input")

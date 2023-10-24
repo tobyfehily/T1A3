@@ -1,13 +1,5 @@
 import random, emoji
 
-# book_list = [
-#     {'title': 'doppelganger', 'author': 'naomi klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
-#     {'title': 'i, claudius', 'author': 'robert graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
-#     {'title': 'python for dummies', 'author': 'stef maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-#     {'title': 'short book', 'author': 'test author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-#     {'title': 'long book', 'author': 'test author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
-#     ]
-
 def add_book(old_book_list, new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
     new_book = dict(title = new_title, author = new_author, pages = new_pages, tags = new_tags, currently_reading = currently_reading, pages_read = pages_read)
     global book_list
@@ -74,25 +66,28 @@ def get_random_book(book_list):
     random_book = random.choice(to_be_read_book_list)
     print(emoji.emojize(f"Why not try :open_book: {random_book['title']} by :writing_hand:  {random_book['author']}?"))
 
-def delete_book(index):
+def delete_book(book_list, index):
     try:
         print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
         del book_list[index - 1]
     except IndexError:
         print("Selection out of range")
 
-def set_current_book(index):
+def set_current_book(old_book_list, index):
     try:
-        if book_list[index -1]["currently_reading"]:
-            print(emoji.emojize(f"You're already reading :open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']}"))
+        if old_book_list[index -1]["currently_reading"]:
+            print(emoji.emojize(f"You're already reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}"))
             quit_prompt = input("Press any key to exit")
         else:
-            book_list[index -1]["currently_reading"] == True
-            print(emoji.emojize(f"Enjoy reading :open_book: {book_list[index - 1]['title']} by :writing_hand: {book_list[index - 1]['author']}!"))
+            old_book_list[index -1]["currently_reading"] = True
+            print(emoji.emojize(f"Enjoy reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
+            global book_list
+            book_list = old_book_list
+            quit_prompt = input("Press any key to exit")
     except IndexError:
         print("Selection out of range")
 
-def set_book_pages(index, new_pages):
+def set_book_pages(book_list, index, new_pages):
     try:
         if new_pages > book_list[index - 1]["pages"]:
             print(emoji.emojize(f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
@@ -105,7 +100,7 @@ def set_book_pages(index, new_pages):
     except ValueError:
         print("Please enter a number.")
 
-def set_book_percent(index, new_percent):
+def set_book_percent(book_list, index, new_percent):
     try:
         while new_percent < 0 or new_percent > 100:
             new_percent = int(input("Please enter a valid percentage between 0 and 100: "))
