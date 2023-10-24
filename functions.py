@@ -4,6 +4,8 @@ book_list = [
     {'title': 'Doppelganger', 'author': 'Naomi Klein', 'pages': 416, 'tags': ['non-fiction'], 'currently_reading': True, 'pages_read': 0},
     {'title': 'I, Claudius', 'author': 'Robert Graves', 'pages': 468, 'tags': ['non-fiction', 'ancient rome'], 'currently_reading': True, 'pages_read': 0}, 
     {'title': 'Python for Dummies', 'author': 'Stef Maruch', 'pages': 432, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    {'title': 'Short book', 'author': 'Short author', 'pages': 100, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
+    {'title': 'Long book', 'author': 'Long author', 'pages': 600, 'tags': ['non-fiction', 'python'], 'currently_reading': False, 'pages_read': 0},
     ]
 
 def add_book(new_title, new_author, new_pages, new_tags = [], currently_reading = False, pages_read = 0):
@@ -25,16 +27,38 @@ def get_tags(tags_list):
     for x in set(unique_tags):
         print(f"- {x}")
 
-def get_book_list():
-    for i, book in enumerate(book_list):
+def get_book_list(list):
+    for i, book in enumerate(list):
         print(f"{i + 1}: '{book['title']}' by {book['author']}")
 
-def get_random_book():
-    random_book_list = []
+def get_sorted_book_list(sorting_choice):
+    currently_reading_book_list = []
+    to_be_read_book_list = []
+    for book in book_list:
+        if book['currently_reading']:
+            currently_reading_book_list.append(book)
+        else:
+            to_be_read_book_list.append(book)
+    match sorting_choice:
+        case "currently reading":
+            get_book_list(currently_reading_book_list)
+        case "to be read":
+            get_book_list(to_be_read_book_list)
+
+def get_to_be_read_book_list():
+    to_be_read_book_list = []
     for book in book_list:
         if not book['currently_reading']:
-            random_book_list.append(book)
-    random_book = random.choice(random_book_list)
+            to_be_read_book_list.append(book)
+    get_book_list(to_be_read_book_list)
+
+
+def get_random_book():
+    to_be_read_book_list = []
+    for book in book_list:
+        if not book['currently_reading']:
+            to_be_read_book_list.append(book)
+    random_book = random.choice(to_be_read_book_list)
     print(f"Why not try '{random_book['title']}' by {random_book['author']}?")
 
 def delete_book(index):
@@ -70,8 +94,14 @@ def set_book_pages(index, new_pages):
 def set_book_percent(index, new_percent):
     try:
         while new_percent < 0 or new_percent > 100:
-            new_percent = input("Please enter a valid percentage between 0 and 100.")
+            new_percent = int(input("Please enter a valid percentage between 0 and 100: "))
         else:
             book_list[index - 1]["pages_read"] = round((float(new_percent) * float(book_list[index - 1]["pages"])) / 100) 
-    except ValueError:
+            if book_list[index - 1]["pages"] == book_list[index - 1]["pages_read"]:
+                print("You're all finished!")
+                delete_book(index)
+            else:
+                print(f"Only {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!")
+    except (ValueError):
         print("Please enter a number.")
+    
