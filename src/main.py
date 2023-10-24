@@ -149,5 +149,7 @@ while True:
                 except TypeError:
                     print("Save failed, error converting books to JSON.")
                 sys.exit("Thanks for visiting! Happy reading.")
+            case _:
+                print(f"{menu_choice} is not a menu choice.")
     except ValueError:
         print("Invalid input.")
