@@ -76,6 +76,7 @@ def set_current_book(index):
     try:
         if book_list[index -1]["currently_reading"]:
             print(emoji.emojize(f"You're already reading :open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']}"))
+            quit_prompt = input("Press any key to exit")
         else:
             book_list[index -1]["currently_reading"] == True
             print(emoji.emojize(f"Enjoy reading :open_book: {book_list[index - 1]['title']} by :writing_hand: {book_list[index - 1]['author']}!"))
