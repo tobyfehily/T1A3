@@ -107,10 +107,8 @@ while True:
                         print("You did not enter a number.")
             case 5:
                 functions.get_sorted_book_list("currently reading")
-                quit_prompt = input("Press any key to exit")
             case 6:
                 functions.get_sorted_book_list("to be read")
-                quit_prompt = input("Press any key to exit")
             case 7:
                 functions.get_tags(functions.book_list)
                 tag_choice = input("Choose a tag, or press Enter to cancel: ").lower()

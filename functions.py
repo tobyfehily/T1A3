@@ -46,6 +46,7 @@ def get_sorted_book_list(sorting_choice):
             get_book_list(currently_reading_book_list)
         case "to be read":
             get_book_list(to_be_read_book_list)
+    quit_prompt = input("Press any key to exit")
 
 def get_tag_book_list(tag):
     tag_book_list = []
@@ -55,7 +56,7 @@ def get_tag_book_list(tag):
                 tag_book_list.append(book)
         if tag_book_list == []:
             tag = input("No matching books. Enter a different tag, or press Enter to cancel: ")
-            if tag != "":
+            if tag != '':
                 continue
             else:    
                 break
