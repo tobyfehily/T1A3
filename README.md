@@ -6,14 +6,16 @@
 ## Style guide
 This application follows the [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/) (van Rossum, Warsaw & Coghlan 2001).
 
-While the code adheres to the 79-character limit suggested by the style guide, some f-strings exceed this limit. This is still in accordance with the PEP 8 Style Guide.
+While the code adheres to the 79-character limit suggested by the style guide, some f-strings in functions.py exceed this limit. 
 
-As van Rossum, Warsaw and Coghlan explain, under 'A Foolish Consistency is the Hobgoblin of Little Minds' in the style guide, "...know when to be inconsistent – sometimes style guide recommendations just aren't applicable. When in doubt, use your best judgment." Further, they state that a good reason to ignore a guideline would include "when applying the guideline would make the code less readable, even for someone who is used to reading code that follows this PEP".
+This is still in accordance with the PEP 8 Style Guide. As van Rossum, Warsaw and Coghlan explain, under 'A Foolish Consistency is the Hobgoblin of Little Minds' in the style guide, "...know when to be inconsistent – sometimes style guide recommendations just aren't applicable. When in doubt, use your best judgment." Further, they state that a good reason to ignore a guideline would include "when applying the guideline would make the code less readable, even for someone who is used to reading code that follows this PEP".
 
-Breaking the f-strings to meet the recoommended 79-character limit would make the code less readable, so I have decided to avoid the "foolish consistency" that is the "hobgoblin of little minds" here and allow this exception.
+Breaking the f-strings to meet the recommended 79-character limit would make the code less readable, especially when it comes to parsing spaces between words, so I have decided to avoid the "foolish consistency" that is the "hobgoblin of little minds" here and allow this exception.
 
 
 ## Features
+TBR Manager is an application for tracking and managing your to be read (TBR) book list.
+
 ### Add books
 The user can add books to the database to keep track of what they want to read.
 
@@ -57,6 +59,7 @@ On exiting, the application automatically exports the database to a CSV and a TX
 ### Save to and load from JSON
 On starting, the application loads the book list from a JSON file, and on exiting, saves to the JSON file. This preserves the book list between sessions. 
 
+
 ## Implementation plan
 The implementation plan was tracked using the project management tool [Linear](https://linear.com).
 
@@ -91,6 +94,8 @@ Detailed information about the daily progress of each feature and checklist item
 [Tuesday 24 October](/docs/AllIssues_24Oct.csv)
 
 [Wednesday 25 October](/docs/AllIssues_25Oct.csv)
+
+[Thursday 26 October](/docs/AllIssues_26Oct.csv)
 
 The following screenshots provide an indication of how development was organised and managed:
 
@@ -131,8 +136,8 @@ The following screenshots provide an indication of how development was organised
 
 4. Copy and paste the following lines of code into your terminal application, then press Enter:
 ```
-./tbrmanager.sh
-chmod +x tbrmanager.sh 
+bash tbrmanager.sh
+chmod +x tbrmanager.sh
 ```
 
 
