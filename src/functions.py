@@ -74,14 +74,14 @@ def continue_prompt(prompt):
 
 def percentage(portion, whole):
     try:
-        return round((float(portion) / float(whole)) * 100)
+        return round((portion / whole) * 100)
     except ZeroDivisionError:
         print("Cannot divide by zero.")
 
 
 def reverse_percentage(portion, whole):
     try:
-        return round((float(portion) * float(whole)) / 100)
+        return round((portion * whole) / 100)
     except ZeroDivisionError:
         print("Cannot divide by zero.")
 
