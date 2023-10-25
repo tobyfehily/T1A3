@@ -157,7 +157,7 @@ This application also uses a number of built-in libraries from Python's standard
 
 #### Software requirements:
 - Python 3
-  - If you do not have Python 3, or are running an older version, the application wil automatically or install it when launching.
+  - If you do not have Python 3, or are running an older version, the application will provide you instructions on how to install or upgrade Python.
 - A terminal application
 
 
