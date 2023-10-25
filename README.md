@@ -139,12 +139,17 @@ The following screenshots provide an indication of how development was organised
 bash tbrmanager.sh
 chmod +x tbrmanager.sh
 ```
+To run the application in light mode, use the following command instead:
+```
+bash tbrmanager.sh light_mode
+chmod +x tbrmanager.sh
+```
 
 
 ### Dependencies
-This application uses the Python package [emoji 2.8.0](https://pypi.org/project/emoji/).
+This application uses the Python packages [emoji 2.8.0](https://pypi.org/project/emoji/) and [Colorthon 2.9.6](https://pypi.org/project/Colorthon/).
 
-If you do not have this package, or are running an older version, the application will automatically install or upgrade it when launching.
+If you do not have these packages, or are running older versions, the application will automatically install or upgrade them when launching.
 
 This application also uses a number of built-in libraries from Python's standard library, which are included with Python.
 

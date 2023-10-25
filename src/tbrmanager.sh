@@ -8,7 +8,7 @@ then
         python3 -m venv .venv
         source .venv/bin/activate
         python3 -m pip install -r requirements.txt
-        python3 main.py
+        python3 main.py $1
         deactivate
     else
         echo 'You need to upgrade Python to Python 3 to run this program. To upgrade to Python 3, visit https://www.python.org/downloads/' >&2

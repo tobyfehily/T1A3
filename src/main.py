@@ -2,6 +2,7 @@ import functions
 import sys
 import csv
 import json
+import colorthon
 
 
 try:
@@ -10,8 +11,18 @@ try:
 except json.JSONDecodeError:
     book_list = []
 
+
+try:
+    if sys.argv[1] == "light_mode":
+        black = colorthon.Colors.BLACK
+        on_white = colorthon.Back.WHITE
+except IndexError:
+    black = colorthon.Colors.WHITE
+    on_white = colorthon.Back.BLACK
+
 while True:
-    menu_choice = input(("""\nWelcome! Select an option from below:\n
+    menu_choice = input(
+        (f"""{black}{on_white}\nWelcome! Select an option from below:\n
     1. Add book
     2. Remove book
     3. Mark book as currently reading
