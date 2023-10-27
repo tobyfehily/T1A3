@@ -157,10 +157,8 @@ def set_book_progress(book_list, index):
 
 def set_book_pages(book_list, index, new_pages):
     while True:
-        if new_pages > book_list[index - 1]["pages"]:
-            print(emoji.emojize(
-                f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
-            break
+        while new_pages > book_list[index - 1]["pages"]:
+            new_pages = int(input(f"Please enter a valid page number under {book_list[index - 1]['pages']} pages long: "))
         else:
             return new_pages
 
