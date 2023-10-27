@@ -111,12 +111,6 @@ def select_book(book_list, prompt):
                 print("You did not enter a number.")
 
 
-def delete_book(book_list, index):
-    print(emoji.emojize(
-        f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} has been deleted."))
-    del book_list[index - 1]
-
-
 def get_tags(book_list):
     tag_list = list(set(x for tags in book_list for x in tags['tags']))
     print("Current tags:\n")

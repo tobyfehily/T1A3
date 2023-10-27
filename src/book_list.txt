@@ -2,7 +2,7 @@ title: 123214321
 author: 324143
 pages: 43214321
 tags: 
-currently_reading: False
+currently_reading: True
 pages_read: 0
 
 title: 43214
@@ -16,6 +16,6 @@ title: 34215
 author: 5431
 pages: 5
 tags: ['54315']
-currently_reading: False
+currently_reading: True
 pages_read: 0
 

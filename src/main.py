@@ -3,6 +3,7 @@ import sys
 import csv
 import json
 import colorthon
+import emoji
 
 
 try:
@@ -39,9 +40,8 @@ while True:
                     new_author = functions.add_book_info("author")
                     if functions.check_book_dupes(
                             book_list, new_title, new_author):
-                        print(functions.emoji.emojize(
-                            f"You have already added :open_book: '{new_title}'"
-                            f" by :writing_hand:  {new_author}."))
+                        print(emoji.emojize(
+                            f"You have already added :open_book: '{new_title}' by :writing_hand:  {new_author}."))
                         continue
                     else:
                         book_list.append(functions.add_book(
@@ -64,7 +64,7 @@ while True:
                         if book_selection == '':
                             break
                         else:
-                            print(functions.emoji.emojize(
+                            print(emoji.emojize(
                                 f":open_book: {book_list[book_selection - 1]['title']} by :writing_hand:  {book_list[book_selection - 1]['author']} has been deleted."))
                             del book_list[book_selection - 1]
                             if functions.continue_prompt(
@@ -83,8 +83,17 @@ while True:
                         if book_selection == '':
                             break
                         else:
-                            functions.set_current_book(
-                                book_list, book_selection)
+                            if book_list[book_selection -
+                                         1]["currently_reading"]:
+                                print(emoji.emojize(
+                                    f"You're already reading :open_book: {book_list[book_selection - 1]['title']} by :writing_hand:  {book_list[book_selection - 1]['author']}!"))
+                                quit_prompt = input("Press Enter to exit: ")
+                                continue
+                            else:
+                                book_list[book_selection -
+                                          1]["currently_reading"] = True
+                                print(emoji.emojize(
+                                    f"Enjoy reading :open_book: {book_list[book_selection - 1]['title']} by :writing_hand:  {book_list[book_selection - 1]['author']}!"))
                             if functions.continue_prompt(
                                     "mark another book as reading"):
                                 continue
