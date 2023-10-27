@@ -139,18 +139,21 @@ def set_book_progress(book_list, index):
     while True:
         try:
             update_value = int(input("Enter current pages or percent: "))
-            while True:
-                pages_or_percent = input(
-                    "Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
-                match pages_or_percent:
-                    case "pages":
-                        return set_book_pages(book_list, index, update_value)
-                    case "percent":
-                        return set_book_percent(book_list, index, update_value)
-                    case _:
-                        print("Invalid input. Type 'pages' or 'percent': ")
-                        continue
-            break
+            if update_value <= 0:
+                print("Must be more than 0")
+                continue
+            else:
+                while True:
+                    pages_or_percent = input(
+                        "Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
+                    match pages_or_percent:
+                        case "pages":
+                            return set_book_pages(book_list, index, update_value)
+                        case "percent":
+                            return set_book_percent(book_list, index, update_value)
+                        case _:
+                            print("Invalid input. Type 'pages' or 'percent': ")
+                            continue
         except ValueError:
             print("You did not enter a number")
 
@@ -158,16 +161,16 @@ def set_book_progress(book_list, index):
 def set_book_pages(book_list, index, new_pages):
     while True:
         while new_pages > book_list[index - 1]["pages"]:
-            new_pages = int(input(f"Please enter a valid page number under {book_list[index - 1]['pages']} pages long: "))
+            new_pages = int(input(f"Please enter a page number under {book_list[index - 1]['pages']} pages long: "))
         else:
             return new_pages
 
 
 def set_book_percent(book_list, index, new_percent):
     while True:
-        while new_percent < 0 or new_percent > 100:
+        while new_percent > 100:
             new_percent = int(
-                input("Please enter a valid percentage between 0 and 100: "))
+                input("Please enter a valid percentage under 100: "))
         else:
             return reverse_percentage(
                 new_percent, book_list[index - 1]["pages"])
