@@ -40,7 +40,6 @@ def add_tags():
 
 
 def add_book(
-        old_book_list,
         new_title,
         new_author,
         new_pages,
@@ -54,10 +53,9 @@ def add_book(
         tags=new_tags,
         currently_reading=currently_reading,
         pages_read=pages_read)
-    global book_list
-    book_list = old_book_list.append(new_book)
     print(emoji.emojize(
         f":open_book: {new_title} by :writing_hand:  {new_author} has been added."))
+    return new_book
 
 
 def continue_prompt(prompt):

@@ -44,12 +44,12 @@ while True:
                             f" by :writing_hand:  {new_author}."))
                         continue
                     else:
-                        functions.add_book(
-                            book_list,
+                        book_list.append(functions.add_book(
                             new_title,
                             new_author,
                             functions.add_pages(),
-                            functions.add_tags())
+                            functions.add_tags()))
+                        print(book_list)
                         if functions.continue_prompt("add another book"):
                             continue
                         else:
