@@ -1,7 +1,6 @@
 import random
 import emoji
 
-
 def add_book_info(prompt):
     while True:
         info = input(f"Enter your {prompt}: ").lower()

@@ -6,7 +6,7 @@
 ## Style guide
 This application follows the [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/) (van Rossum, Warsaw & Coghlan 2001).
 
-While the code adheres to the 79-character limit suggested by the style guide, some f-strings in functions.py exceed this limit. 
+While the code adheres to the 79-character limit suggested by the style guide, some f-strings exceed this limit. 
 
 This is still in accordance with the PEP 8 Style Guide. As van Rossum, Warsaw and Coghlan explain, under 'A Foolish Consistency is the Hobgoblin of Little Minds' in the style guide, "...know when to be inconsistent – sometimes style guide recommendations just aren't applicable. When in doubt, use your best judgment." Further, they state that a good reason to ignore a guideline would include "when applying the guideline would make the code less readable, even for someone who is used to reading code that follows this PEP".
 

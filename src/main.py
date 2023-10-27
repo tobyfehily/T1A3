@@ -17,6 +17,9 @@ try:
     if sys.argv[1] == "light_mode":
         black = colorthon.Colors.BLACK
         on_white = colorthon.Back.WHITE
+    else:
+        black = colorthon.Colors.WHITE
+        on_white = colorthon.Back.BLACK
 except IndexError:
     black = colorthon.Colors.WHITE
     on_white = colorthon.Back.BLACK
