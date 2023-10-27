@@ -110,8 +110,17 @@ while True:
                         if book_selection == '':
                             break
                         else:
-                            functions.set_book_progress(
+                            book_list[book_selection - 1]['pages_read'] = functions.set_book_progress(
                                 book_list, book_selection)
+                            if book_list[book_selection -
+                                         1]['pages'] == book_list[book_selection -
+                                                                  1]['pages_read']:
+                                print(emoji.emojize(
+                                    f"That's the entire book! :open_book: {book_list[book_selection - 1]['title']} by :writing_hand:  {book_list[book_selection - 1]['author']} has been deleted."))
+                                del book_list[book_selection - 1]
+                            else:
+                                print(emoji.emojize(
+                                    f":open_book: {book_list[book_selection - 1]['pages'] - book_list[book_selection - 1]['pages_read']} pages to go!"))
                             if functions.continue_prompt(
                                     "update another book"):
                                 continue

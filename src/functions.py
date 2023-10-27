@@ -136,18 +136,6 @@ def select_tags(book_list):
                 break
 
 
-def set_current_book(old_book_list, index):
-    if old_book_list[index - 1]["currently_reading"]:
-        print(emoji.emojize(
-            f"You're already reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
-    else:
-        old_book_list[index - 1]["currently_reading"] = True
-        print(emoji.emojize(
-            f"Enjoy reading :open_book: {old_book_list[index - 1]['title']} by :writing_hand:  {old_book_list[index - 1]['author']}!"))
-        global book_list
-        book_list = old_book_list
-
-
 def set_book_progress(book_list, index):
     while True:
         try:
@@ -157,11 +145,9 @@ def set_book_progress(book_list, index):
                     "Enter 'pages' to update by pages or 'percent' to update by percent: ").lower()
                 match pages_or_percent:
                     case "pages":
-                        set_book_pages(book_list, index, update_value)
-                        break
+                        return set_book_pages(book_list, index, update_value)
                     case "percent":
-                        set_book_percent(book_list, index, update_value)
-                        break
+                        return set_book_percent(book_list, index, update_value)
                     case _:
                         print("Invalid input. Type 'pages' or 'percent': ")
                         continue
@@ -176,14 +162,8 @@ def set_book_pages(book_list, index, new_pages):
             print(emoji.emojize(
                 f":open_book: {book_list[index - 1]['title']} by :writing_hand:  {book_list[index - 1]['author']} is only {book_list[index - 1]['pages']} pages long."))
             break
-        elif new_pages == book_list[index - 1]["pages"]:
-            delete_book(book_list, index)
-            break
         else:
-            print(emoji.emojize(
-                f"Only :open_book: {book_list[index - 1]['pages'] - new_pages} pages to go!"))
-            book_list[index - 1]['pages_read'] = new_pages
-            break
+            return new_pages
 
 
 def set_book_percent(book_list, index, new_percent):
@@ -192,15 +172,8 @@ def set_book_percent(book_list, index, new_percent):
             new_percent = int(
                 input("Please enter a valid percentage between 0 and 100: "))
         else:
-            if new_percent == 100:
-                delete_book(book_list, index)
-                break
-            else:
-                book_list[index - 1]["pages_read"] = reverse_percentage(
-                    new_percent, book_list[index - 1]["pages"])
-                print(emoji.emojize(
-                    f"Only :open_book: {book_list[index - 1]['pages'] - book_list[index - 1]['pages_read']} pages to go!"))
-                break
+            return reverse_percentage(
+                new_percent, book_list[index - 1]["pages"])
 
 
 def get_random_book(book_list):
