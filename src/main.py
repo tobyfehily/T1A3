@@ -49,7 +49,6 @@ while True:
                             new_author,
                             functions.add_pages(),
                             functions.add_tags()))
-                        print(book_list)
                         if functions.continue_prompt("add another book"):
                             continue
                         else:
@@ -65,7 +64,9 @@ while True:
                         if book_selection == '':
                             break
                         else:
-                            functions.delete_book(book_list, book_selection)
+                            print(functions.emoji.emojize(
+                                f":open_book: {book_list[book_selection - 1]['title']} by :writing_hand:  {book_list[book_selection - 1]['author']} has been deleted."))
+                            del book_list[book_selection - 1]
                             if functions.continue_prompt(
                                     "remove another book"):
                                 continue
